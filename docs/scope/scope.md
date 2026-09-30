@@ -34,7 +34,7 @@ Decidir con qué se construye la página, cómo se hacen las animaciones al hace
 **Done when:** la decisión queda escrita en un spec y la página vacía abre en el navegador local con una animación de prueba al hacer scroll.
 spec [0001](../specs/0001-stack-publicacion/index.md) · code in `src/`
 - [x] Decide the stack (spec): `/architect stack y publicación`
-- [ ] Scaffold from the decision: `/develop stack y publicación`
+- [x] Scaffold from the decision: `/develop stack y publicación`
 - [ ] Verify it: `/check verify stack y publicación`
 
 ### 2. Estándares y herramientas
