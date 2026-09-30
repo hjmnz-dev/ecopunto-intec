@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base titulo="Ecopunto INTEC" descripcion="Pequeños aparatos, grandes cambios.">
+  <main>
+    <!-- Sección de prueba temporal (AC-1). La reemplaza la portada en la parte #5. -->
+    <section class="prueba-inicio">
+      <h1>Ecopunto INTEC</h1>
+      <p>Baja para ver la animación de prueba.</p>
+    </section>
+    <section class="prueba-animada">
+      <h2 data-animar>Pequeños aparatos, grandes cambios</h2>
+      <p data-animar>Esta sección entra animada al hacer scroll.</p>
+      <p data-animar>Con movimiento reducido aparece directamente.</p>
+    </section>
+  </main>
+</Base>
+
+<style>
+  section {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: grid;
+    place-content: center;
+    text-align: center;
+  }
+</style>

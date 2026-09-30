@@ -1,0 +1,14 @@
+/* Contrato de animación (spec 0001): solo se esconde lo animable
+   cuando hay JS y el visitante no pidió menos movimiento. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  .js [data-animar] { visibility: hidden; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}

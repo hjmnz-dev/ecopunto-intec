@@ -1,0 +1,41 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+}
+
+const { titulo, descripcion } = Astro.props;
+// Canonical sin parámetros: ?src=qr no se copia al compartir.
+const canonica = Astro.site ? new URL('/', Astro.site).href.replace(/\/$/, '') : undefined;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Único script is:inline permitido: sin JS, o si GSAP no llega en 3 s, todo el contenido queda visible. -->
+    <script is:inline>
+      {
+        const r = document.documentElement;
+        r.classList.add('js');
+        setTimeout(() => { if (!r.classList.contains('anim-listo')) r.classList.remove('js'); }, 3000);
+      }
+    </script>
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    {canonica && <link rel="canonical" href={canonica} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/animaciones.ts';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+# salida del build
+dist/
+# tipos generados
+.astro/
+# Cloudflare
+.wrangler/
+
+# dependencias
+node_modules/
+
+# logs
+npm-debug.log*
+
+# variables de entorno
+.env*
+
+# ajustes locales de Claude Code
+.claude/settings.local.json
+
+# sistema
+.DS_Store
+Thumbs.db
+.idea/
