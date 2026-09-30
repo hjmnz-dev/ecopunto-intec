@@ -1,7 +1,7 @@
 # 0001. Stack y publicación: Astro, GSAP y Cloudflare Pages
 
 **Date**: 2026-09-30
-**Status**: In Progress
+**Status**: Accepted
 
 ## Summary
 

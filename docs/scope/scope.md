@@ -13,9 +13,9 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 
 | # | Feature | Phase | Status |
 |---|---------|-------|--------|
-| 1 | Stack y publicación | Foundation | in-progress |
+| 1 | Stack y publicación | Foundation | done |
 | 2 | Estándares y herramientas | Foundation | planned |
-| 3 | Sistema visual y animación | Foundation | planned |
+| 3 | Sistema visual y animación | Foundation | in-progress |
 | 4 | Contenido e imágenes de la campaña | Foundation | planned |
 | 5 | Portada y el problema | Release 1 | planned |
 | 6 | Guía del Ecopunto | Release 1 | planned |
@@ -35,17 +35,24 @@ Decidir con qué se construye la página, cómo se hacen las animaciones al hace
 spec [0001](../specs/0001-stack-publicacion/index.md) · code in `src/`
 - [x] Decide the stack (spec): `/architect stack y publicación`
 - [x] Scaffold from the decision: `/develop stack y publicación`
-- [ ] Verify it: `/check verify stack y publicación`
+- [x] Verify it: `/check verify stack y publicación`
 
 ### 2. Estándares y herramientas
 Anotar las convenciones del proyecto a partir del proyecto real, en versión ligera (formato y orden de archivos), para que cada sesión siguiente trabaje igual.
 **Done when:** existe un `AGENTS.md` raíz con el stack real y las convenciones, y el formateo corre sin errores.
 - [ ] Capture conventions + tooling choices: `/audit`
 
-### 3. Sistema visual y animación · needs a decision
+### 3. Sistema visual y animación
 Traducir el estilo de Canva a la web: fondo de cartón reciclado, cinta verde, letra tipo marcador, verde Ecopunto, tarjetas tipo papel. Incluye las reglas de movimiento (cómo entran las secciones, duración, qué pasa si el usuario pidió menos movimiento en su celular). (basis: every page depends on the design system; accesibilidad de animaciones)
 **Done when:** `design.md` define colores, tipografías, texturas y reglas de animación; hay componentes base (tarjeta con cinta, título de sección, bloque de dato) que se ven bien en celular, y con movimiento reducido activado el contenido aparece sin animación.
-- [ ] Design it (spec): `/architect sistema visual y animación`
+spec [0002](../specs/0002-sistema-visual-animacion/index.md) · code in _(pendiente)_
+- [x] Design it (spec): `/architect sistema visual y animación`
+- [ ] Build it: `/develop sistema visual y animación`
+  - [ ] Tokens, fuentes y fondo de cartón (AC-2, AC-3, AC-4, AC-6)
+  - [ ] Íconos, siete componentes base y página de muestra (AC-5, AC-6, AC-11)
+  - [ ] Movimiento: entradas, tarjeta con cinta, título y parallax (AC-7, AC-8, AC-9, AC-10, AC-13)
+  - [ ] `design.md` y control de peso y contraste (AC-1, AC-6, AC-12)
+- [ ] Verify it: `/check verify sistema visual y animación`
 
 ### 4. Contenido e imágenes de la campaña
 Exportar de Canva las imágenes (logo Ecopunto INTEC, contenedor, objetos como cargador, cable, audífonos, botella) y pasar los textos de las diapositivas a un solo lugar en el proyecto, para que las secciones solo tengan que leerlos.
