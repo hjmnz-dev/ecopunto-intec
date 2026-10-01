@@ -29,7 +29,8 @@ mm.add('(prefers-reduced-motion: no-preference) and (min-width: 1024px) and (poi
 });
 document.documentElement.classList.add('anim-listo');
 
-const cargada = document.readyState === 'complete'
-  ? Promise.resolve()
-  : new Promise((ok) => addEventListener('load', ok, { once: true }));
+const cargada =
+  document.readyState === 'complete'
+    ? Promise.resolve()
+    : new Promise((ok) => addEventListener('load', ok, { once: true }));
 Promise.all([document.fonts.ready, cargada]).then(() => ScrollTrigger.refresh());

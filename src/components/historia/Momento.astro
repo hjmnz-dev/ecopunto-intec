@@ -22,7 +22,9 @@ const total = campana.encuesta.participantes;
 
 <div class="momento" data-momento={indice}>
   <TarjetaCinta animar={false} giro={giro} cinta={indice === 0 ? 'arriba' : 'esquinas'}>
-    <Encabezado id={id} class="titulo-momento">{momento.titulo}</Encabezado>
+    <Encabezado id={id} class="titulo-momento">
+      {momento.titulo}
+    </Encabezado>
     {momento.dato && (
       <div class="dato" data-dato>
         <Cifra valor={momento.dato.valor} />
@@ -31,12 +33,18 @@ const total = campana.encuesta.participantes;
         <p class="leyenda">Cada punto es una de las {total} personas encuestadas.</p>
       </div>
     )}
-    {momento.texto && <p class="texto" data-texto>{momento.texto}</p>}
+    {momento.texto && (
+      <p class="texto" data-texto>
+        {momento.texto}
+      </p>
+    )}
   </TarjetaCinta>
 </div>
 
 <style>
-  .momento { min-width: 0; }
+  .momento {
+    min-width: 0;
+  }
   .titulo-momento {
     font-size: var(--titulo-historia);
     text-transform: none;
@@ -47,10 +55,14 @@ const total = campana.encuesta.participantes;
     gap: var(--espacio-2);
     margin-bottom: var(--espacio-3);
   }
-  .frase { font-weight: 700; }
+  .frase {
+    font-weight: 700;
+  }
   .leyenda {
     font-size: var(--texto-chico);
     color: var(--color-tinta-suave);
   }
-  .texto:last-child { margin-bottom: 0; }
+  .texto:last-child {
+    margin-bottom: 0;
+  }
 </style>

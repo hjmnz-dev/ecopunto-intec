@@ -15,7 +15,9 @@ const texto = formatoCifra(valor);
   <span class="solo-lector">{texto}</span>
   <span class="caja" aria-hidden="true">
     <span class="reserva">{texto}</span>
-    <span class="valor" data-cifra={valor}>{texto}</span>
+    <span class="valor" data-cifra={valor}>
+      {texto}
+    </span>
   </span>
 </p>
 
@@ -28,8 +30,14 @@ const texto = formatoCifra(valor);
     line-height: 1;
     color: var(--color-verde);
   }
-  .caja { display: inline-grid; }
+  .caja {
+    display: inline-grid;
+  }
   .reserva,
-  .valor { grid-area: 1 / 1; }
-  .reserva { visibility: hidden; }
+  .valor {
+    grid-area: 1 / 1;
+  }
+  .reserva {
+    visibility: hidden;
+  }
 </style>

@@ -13,7 +13,9 @@ const Encabezado = nivel === 2 ? 'h2' : 'h3';
 <div class="tira" data-animar="titulo">
   <span class="cinta cinta-inicio" aria-hidden="true"></span>
   <span class="cinta cinta-fin" aria-hidden="true"></span>
-  <Encabezado id={id} class="titulo"><slot /></Encabezado>
+  <Encabezado id={id} class="titulo">
+    <slot />
+  </Encabezado>
 </div>
 
 <style>

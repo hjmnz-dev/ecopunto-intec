@@ -14,8 +14,26 @@ const encendido = pose === 'cargando';
 
 <g data-parte="celular" transform={`translate(${x} ${y}) scale(${escala})`}>
   <rect class="ilu-tinta ilu-trazo" x="0" y="0" width="70" height="130" rx="12" />
-  <rect data-parte="pantalla" class="ilu-cuaderno" x="7" y="12" width="56" height="100" rx="4" opacity={encendido ? 1 : 0} />
-  <rect data-parte="pantalla-apagada" class="ilu-noche" x="7" y="12" width="56" height="100" rx="4" opacity={encendido ? 0 : 1} />
+  <rect
+    data-parte="pantalla"
+    class="ilu-cuaderno"
+    x="7"
+    y="12"
+    width="56"
+    height="100"
+    rx="4"
+    opacity={encendido ? 1 : 0}
+  />
+  <rect
+    data-parte="pantalla-apagada"
+    class="ilu-noche"
+    x="7"
+    y="12"
+    width="56"
+    height="100"
+    rx="4"
+    opacity={encendido ? 0 : 1}
+  />
   <rect class="ilu-trazo ilu-linea" x="20" y="50" width="30" height="16" rx="3" />
   <rect class="ilu-tinta" x="50" y="55" width="3" height="6" rx="1" />
   <rect

@@ -16,8 +16,12 @@ const { id, tono = 'carton', etiqueta } = Astro.props;
 <section class:list={['escena', `escena-${tono}`]} id={`escena-${id}`} data-escena={id} aria-labelledby={etiqueta}>
   {tono === 'noche' && <div class="noche" data-noche aria-hidden="true" />}
   <div class="escenario">
-    <div class="dibujo"><slot name="dibujo" /></div>
-    <div class="momentos"><slot /></div>
+    <div class="dibujo">
+      <slot name="dibujo" />
+    </div>
+    <div class="momentos">
+      <slot />
+    </div>
   </div>
 </section>
 
@@ -48,8 +52,12 @@ const { id, tono = 'carton', etiqueta } = Astro.props;
     gap: var(--espacio-5);
   }
   @media (min-width: 1024px) {
-    .escenario { grid-template-columns: 1fr 1fr; }
-    .dibujo { height: 22rem; }
+    .escenario {
+      grid-template-columns: 1fr 1fr;
+    }
+    .dibujo {
+      height: 22rem;
+    }
   }
 
   /* Modo fijo: solo con la clase que pone el JS */
@@ -68,21 +76,38 @@ const { id, tono = 'carton', etiqueta } = Astro.props;
     align-content: center;
     overflow: hidden;
   }
-  .escena-fija .dibujo { height: min(32svh, 16rem); }
-  .escena-fija .momentos { grid-template-areas: 'momento'; }
-  .escena-fija .momentos > :global(*) { grid-area: momento; }
+  .escena-fija .dibujo {
+    height: min(32svh, 16rem);
+  }
+  .escena-fija .momentos {
+    grid-template-areas: 'momento';
+  }
+  .escena-fija .momentos > :global(*) {
+    grid-area: momento;
+  }
   /* Pantallas bajas: dibujo más chico y sin la leyenda de los puntos, para que la escena quepa */
   @media (max-height: 800px) {
-    .escena-fija .escenario { gap: var(--espacio-2); padding-block: var(--espacio-3); }
-    .escena-fija .dibujo { height: min(24svh, 11rem); }
-    .escena-fija :global(.leyenda) { display: none; }
-    .escena-fija :global(.tarjeta) { padding: var(--espacio-3); }
+    .escena-fija .escenario {
+      gap: var(--espacio-2);
+      padding-block: var(--espacio-3);
+    }
+    .escena-fija .dibujo {
+      height: min(24svh, 11rem);
+    }
+    .escena-fija :global(.leyenda) {
+      display: none;
+    }
+    .escena-fija :global(.tarjeta) {
+      padding: var(--espacio-3);
+    }
   }
   @media (min-width: 1024px) {
     .escena-fija .escenario {
       max-width: calc(var(--ancho-seccion) + 2 * var(--margen-lateral));
       margin-inline: auto;
     }
-    .escena-fija .dibujo { height: min(60svh, 24rem); }
+    .escena-fija .dibujo {
+      height: min(60svh, 24rem);
+    }
   }
 </style>

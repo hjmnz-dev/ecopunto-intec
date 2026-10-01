@@ -14,7 +14,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | # | Feature | Phase | Status |
 |---|---------|-------|--------|
 | 1 | Stack y publicación | Foundation | done |
-| 2 | Estándares y herramientas | Foundation | planned |
+| 2 | Estándares y herramientas | Foundation | done |
 | 3 | Sistema visual y animación | Foundation | done |
 | 4 | Contenido e imágenes de la campaña | Foundation | done |
 | 5 | Portada y el problema | Release 1 | dropped (reemplazada por #14) |
@@ -41,7 +41,8 @@ spec [0001](../specs/0001-stack-publicacion/index.md) · code in `src/`
 ### 2. Estándares y herramientas
 Anotar las convenciones del proyecto a partir del proyecto real, en versión ligera (formato y orden de archivos), para que cada sesión siguiente trabaje igual.
 **Done when:** existe un `AGENTS.md` raíz con el stack real y las convenciones, y el formateo corre sin errores.
-- [ ] Capture conventions + tooling choices: `/audit`
+code in `AGENTS.md`, `.prettierrc.json` (Prettier con plugin de Astro)
+- [x] Capture conventions + tooling choices: `/audit`
 
 ### 3. Sistema visual y animación
 Traducir el estilo de Canva a la web: fondo de cartón reciclado, cinta verde, letra tipo marcador, verde Ecopunto, tarjetas tipo papel. Incluye las reglas de movimiento (cómo entran las secciones, duración, qué pasa si el usuario pidió menos movimiento en su celular). (basis: every page depends on the design system; accesibilidad de animaciones)

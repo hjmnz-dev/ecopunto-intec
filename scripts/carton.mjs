@@ -35,8 +35,14 @@ await mkdir(destino, { recursive: true });
 
 async function generar(lado) {
   const base = sharp(Buffer.from(svg(lado))).flatten({ background: '#ae7a4a' });
-  await base.clone().avif({ quality: 56, effort: 9 }).toFile(new URL('carton.avif', destino).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
-  await base.clone().webp({ quality: 60 }).toFile(new URL('carton.webp', destino).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+  await base
+    .clone()
+    .avif({ quality: 56, effort: 9 })
+    .toFile(new URL('carton.avif', destino).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+  await base
+    .clone()
+    .webp({ quality: 60 })
+    .toFile(new URL('carton.webp', destino).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
   const avif = (await stat(new URL('carton.avif', destino))).size;
   const webp = (await stat(new URL('carton.webp', destino))).size;
   return { avif, webp };

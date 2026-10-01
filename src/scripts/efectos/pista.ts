@@ -6,7 +6,8 @@ import type { Gsap } from './tipos';
 export function pista(gsap: Gsap) {
   const flechas = gsap.utils.toArray<HTMLElement>('[data-pista]');
   if (!flechas.length) return;
-  gsap.timeline({ delay: PISTA_RETRASO, repeat: PISTA_REBOTES - 1 })
+  gsap
+    .timeline({ delay: PISTA_RETRASO, repeat: PISTA_REBOTES - 1 })
     .to(flechas, { y: 10, duration: PISTA_DURACION / 2, ease: 'power1.out' })
     .to(flechas, { y: 0, duration: PISTA_DURACION / 2, ease: 'power1.in' });
 }

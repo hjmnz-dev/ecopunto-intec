@@ -23,11 +23,15 @@ const conIconos = (puntos: readonly string[], iconos: NombreIcono[]) =>
   <div class="grilla columnas-2">
     <TarjetaCinta giro="izquierda" as="article">
       <EtiquetaSiNo tipo="si" texto={guia.si.titulo} />
-      <div class="lista"><ListaIconos items={conIconos(guia.si.puntos, iconosSi)} /></div>
+      <div class="lista">
+        <ListaIconos items={conIconos(guia.si.puntos, iconosSi)} />
+      </div>
     </TarjetaCinta>
     <TarjetaCinta giro="derecha" as="article">
       <EtiquetaSiNo tipo="no" texto={guia.no.titulo} />
-      <div class="lista"><ListaIconos items={conIconos(guia.no.puntos, iconosNo)} /></div>
+      <div class="lista">
+        <ListaIconos items={conIconos(guia.no.puntos, iconosNo)} />
+      </div>
     </TarjetaCinta>
   </div>
 
@@ -36,10 +40,15 @@ const conIconos = (puntos: readonly string[], iconos: NombreIcono[]) =>
     {pasos.puntos.map((paso, i) => (
       <TarjetaCinta as="li" giro={i % 2 === 0 ? 'izquierda' : 'derecha'} cinta={i % 2 === 0 ? 'arriba' : 'esquinas'}>
         <div class="paso">
-          <span class="numero" aria-hidden="true">{i + 1}</span>
+          <span class="numero" aria-hidden="true">
+            {i + 1}
+          </span>
           <Icono nombre={iconosPasos[i] ?? 'check'} tamano="2.5rem" />
         </div>
-        <p><span class="solo-lector">Paso {i + 1}: </span>{paso}</p>
+        <p>
+          <span class="solo-lector">Paso {i + 1}: </span>
+          {paso}
+        </p>
       </TarjetaCinta>
     ))}
   </ol>
@@ -58,18 +67,26 @@ const conIconos = (puntos: readonly string[], iconos: NombreIcono[]) =>
 </Seccion>
 
 <style>
-  .lista { margin-top: var(--espacio-4); }
+  .lista {
+    margin-top: var(--espacio-4);
+  }
   .pasos {
     list-style: none;
     margin: 0;
     padding: 0;
   }
   @media (min-width: 768px) {
-    :global(.seccion-amplio) .pasos { grid-template-columns: repeat(2, 1fr); }
-    :global(.seccion-amplio) .columnas-2 { grid-template-columns: repeat(2, 1fr); }
+    :global(.seccion-amplio) .pasos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    :global(.seccion-amplio) .columnas-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media (min-width: 1024px) {
-    :global(.seccion-amplio) .pasos { grid-template-columns: repeat(4, 1fr); }
+    :global(.seccion-amplio) .pasos {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
   .paso {
     display: flex;
@@ -89,5 +106,7 @@ const conIconos = (puntos: readonly string[], iconos: NombreIcono[]) =>
     height: 16rem;
     margin-inline: auto;
   }
-  .contenedor { align-items: center; }
+  .contenedor {
+    align-items: center;
+  }
 </style>

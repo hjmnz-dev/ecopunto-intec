@@ -11,11 +11,21 @@ const funciona: Armar = (tl, escena) => {
   const { parte, todos } = partes(escena);
   const [m1, m2] = todos('[data-momento]');
   // 0 a 0.35: el celular se carga y aparece el primer momento
-  tl.fromTo(parte('bateria-nivel'), { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, ease: 'none', duration: 0.3 }, 0);
+  tl.fromTo(
+    parte('bateria-nivel'),
+    { scaleX: 0, transformOrigin: '0% 50%' },
+    { scaleX: 1, ease: 'none', duration: 0.3 },
+    0,
+  );
   tl.fromTo(parte('pantalla'), { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
   aparecer(tl, m1, 0.02);
   // 0.35 a 0.5: chispa, el cable se rompe, la pantalla se apaga
-  tl.fromTo(parte('chispa'), { opacity: 0, scale: 0, ...origenCentro }, { opacity: 1, scale: 1, ease: 'back.out(2)', duration: 0.08 }, 0.35);
+  tl.fromTo(
+    parte('chispa'),
+    { opacity: 0, scale: 0, ...origenCentro },
+    { opacity: 1, scale: 1, ease: 'back.out(2)', duration: 0.08 },
+    0.35,
+  );
   tl.fromTo(parte('cable'), { opacity: 1 }, { opacity: 0, duration: 0.06 }, 0.38);
   tl.fromTo(parte('cable-roto'), { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0.38);
   tl.fromTo(parte('cara-feliz'), { opacity: 1 }, { opacity: 0, duration: 0.05 }, 0.4);
@@ -34,7 +44,11 @@ const cajon: Armar = (tl, escena) => {
   const [m1] = todos('[data-momento]');
   aparecer(tl, m1, 0);
   tl.fromTo(parte('frente'), { y: -24 }, { y: 0, ease: 'power2.out', duration: 0.1 }, 0);
-  tl.from(parte('cargador'), { y: '-=170', rotation: '+=50', ease: 'power2.in', duration: 0.18, ...origenCentro }, 0.06);
+  tl.from(
+    parte('cargador'),
+    { y: '-=170', rotation: '+=50', ease: 'power2.in', duration: 0.18, ...origenCentro },
+    0.06,
+  );
   const { cifra, puntos } = datoDe(m1);
   contar(tl, cifra, 0.25, 0.6);
   marcar(tl, puntos, 0.25, 0.6);
@@ -81,7 +95,11 @@ const ecopunto: Armar = (tl, escena) => {
   const [m1, m2] = todos('[data-momento]');
   aparecer(tl, m1, 0);
   tl.from(parte('contenedor'), { y: '+=320', ease: 'power2.out', duration: 0.25 }, 0);
-  tl.from(parte('cargador'), { x: '-=220', y: '-=160', rotation: '-=200', ease: 'power1.inOut', duration: 0.15, ...origenCentro }, 0.25);
+  tl.from(
+    parte('cargador'),
+    { x: '-=220', y: '-=160', rotation: '-=200', ease: 'power1.inOut', duration: 0.15, ...origenCentro },
+    0.25,
+  );
   const d1 = datoDe(m1);
   contar(tl, d1.cifra, 0.4, 0.2);
   marcar(tl, d1.puntos, 0.4, 0.2);

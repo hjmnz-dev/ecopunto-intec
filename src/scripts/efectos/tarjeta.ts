@@ -1,7 +1,14 @@
 // data-animar="tarjeta": entra girada y se asienta en su giro de reposo; después aparecen sus cintas.
 // El giro de entrada es relativo ('+='), así termina exactamente en el `rotate` de CSS.
 import {
-  CURVA, DISTANCIA, DURACION, DURACION_CINTA, ESCALONADO, GIRO_ENTRADA, INICIO, RETRASO_CINTA,
+  CURVA,
+  DISTANCIA,
+  DURACION,
+  DURACION_CINTA,
+  ESCALONADO,
+  GIRO_ENTRADA,
+  INICIO,
+  RETRASO_CINTA,
 } from '../movimiento';
 import type { Contexto, Gsap, Lote, Trigger } from './tipos';
 
@@ -31,7 +38,11 @@ export function tarjetas(gsap: Gsap, ScrollTrigger: Trigger, ctx: Contexto) {
       });
       tl.to(el, { autoAlpha: 1, duration: DURACION, ease: CURVA }, 0);
       if (cintas.length) {
-        tl.to(cintas, { scaleX: 1, autoAlpha: 1, duration: DURACION_CINTA, ease: CURVA }, DURACION - 0.1 + RETRASO_CINTA);
+        tl.to(
+          cintas,
+          { scaleX: 1, autoAlpha: 1, duration: DURACION_CINTA, ease: CURVA },
+          DURACION - 0.1 + RETRASO_CINTA,
+        );
       }
     });
   };

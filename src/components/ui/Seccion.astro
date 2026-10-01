@@ -25,8 +25,12 @@ const { id, ancho = 'amplio', class: clase, tabindex } = Astro.props;
     display: grid;
     gap: var(--espacio-5);
   }
-  .seccion-texto { max-width: calc(var(--ancho-texto) + 2 * var(--margen-lateral)); }
-  .seccion-amplio { max-width: calc(var(--ancho-seccion) + 2 * var(--margen-lateral)); }
+  .seccion-texto {
+    max-width: calc(var(--ancho-texto) + 2 * var(--margen-lateral));
+  }
+  .seccion-amplio {
+    max-width: calc(var(--ancho-seccion) + 2 * var(--margen-lateral));
+  }
 
   .seccion-amplio :global(.grilla) {
     display: grid;
@@ -35,9 +39,13 @@ const { id, ancho = 'amplio', class: clase, tabindex } = Astro.props;
     align-items: start;
   }
   @media (min-width: 768px) {
-    .seccion-amplio :global(.grilla) { grid-template-columns: repeat(2, 1fr); }
+    .seccion-amplio :global(.grilla) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   @media (min-width: 1024px) {
-    .seccion-amplio :global(.grilla) { grid-template-columns: repeat(3, 1fr); }
+    .seccion-amplio :global(.grilla) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>

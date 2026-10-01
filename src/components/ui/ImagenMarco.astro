@@ -25,18 +25,19 @@ const {
 } = Astro.props;
 
 const cintas: string[] =
-  cinta === 'arriba' ? ['arriba'] :
-  cinta === 'esquinas' ? ['esquina-inicio', 'esquina-fin'] :
-  cinta === 'lados' ? ['lado-inicio', 'lado-fin'] :
-  [];
+  cinta === 'arriba'
+    ? ['arriba']
+    : cinta === 'esquinas'
+      ? ['esquina-inicio', 'esquina-fin']
+      : cinta === 'lados'
+        ? ['lado-inicio', 'lado-fin']
+        : [];
 ---
 
-<figure
-  class:list={['marco', 'papel', `giro-${giro}`]}
-  data-giro={giro}
-  data-animar={animar ? 'tarjeta' : undefined}
->
-  {cintas.map((pos) => <span class:list={['cinta', `cinta-${pos}`]} aria-hidden="true" />)}
+<figure class:list={['marco', 'papel', `giro-${giro}`]} data-giro={giro} data-animar={animar ? 'tarjeta' : undefined}>
+  {cintas.map((pos) => (
+    <span class:list={['cinta', `cinta-${pos}`]} aria-hidden="true" />
+  ))}
   <Picture src={src} alt={alt} widths={anchos} sizes={sizes} formats={['avif', 'webp']} loading="lazy" />
 </figure>
 
@@ -46,10 +47,17 @@ const cintas: string[] =
     margin: 0;
     padding: var(--espacio-2);
   }
-  .marco :global(img) { width: 100%; height: auto; }
+  .marco :global(img) {
+    width: 100%;
+    height: auto;
+  }
 
-  .giro-izquierda { rotate: var(--giro-izquierda); }
-  .giro-derecha { rotate: var(--giro-derecha); }
+  .giro-izquierda {
+    rotate: var(--giro-izquierda);
+  }
+  .giro-derecha {
+    rotate: var(--giro-derecha);
+  }
 
   .cinta-arriba {
     top: -0.8rem;

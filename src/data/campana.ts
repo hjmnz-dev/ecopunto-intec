@@ -87,7 +87,8 @@ const datos = [
   },
   {
     valor: 78.3,
-    frase: 'de los participantes definitivamente o probablemente utilizaría contenedores para residuos electrónicos dentro de INTEC.',
+    frase:
+      'de los participantes definitivamente o probablemente utilizaría contenedores para residuos electrónicos dentro de INTEC.',
     pregunta:
       'Si se colocaran contenedores identificados para residuos electrónicos dentro de INTEC, ¿los utilizarías para depositar los aparatos que ya no necesitas?',
   },
@@ -211,7 +212,15 @@ export const campana = {
     },
     no: {
       titulo: 'No debes depositar',
-      puntos: ['Restos de comida', 'Vasos', 'Botellas', 'Papel sanitario', 'Desechos orgánicos', 'Líquidos', 'Basura común'],
+      puntos: [
+        'Restos de comida',
+        'Vasos',
+        'Botellas',
+        'Papel sanitario',
+        'Desechos orgánicos',
+        'Líquidos',
+        'Basura común',
+      ],
     },
     contenedor: {
       titulo: '¿Cómo reconozco el contenedor?',

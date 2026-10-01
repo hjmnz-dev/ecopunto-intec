@@ -20,7 +20,12 @@ export function titulos(gsap: Gsap, ScrollTrigger: Trigger, ctx: Contexto) {
       tl.to(tira, { autoAlpha: 1, y: 0, duration: DURACION_TIRA, ease: CURVA });
       const h = encabezado(tira);
       if (h) {
-        tl.to(h, { clipPath: 'inset(0 0% 0 0)', duration: DURACION_TITULO, ease: 'power1.inOut', clearProps: 'clipPath' });
+        tl.to(h, {
+          clipPath: 'inset(0 0% 0 0)',
+          duration: DURACION_TITULO,
+          ease: 'power1.inOut',
+          clearProps: 'clipPath',
+        });
       }
     });
   };

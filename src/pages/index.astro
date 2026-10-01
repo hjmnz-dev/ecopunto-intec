@@ -26,14 +26,20 @@ const etiqueta = (id: string) => `titulo-${id}`;
 ---
 
 <Base titulo={campana.meta.titulo} descripcion={campana.meta.descripcion}>
-  <a class="saltar" href="#guia">{historia.saltar}</a>
+  <a class="saltar" href="#guia">
+    {historia.saltar}
+  </a>
   <main>
     <header class="portada">
       <div class="portada-contenido">
         <div class="portada-texto">
           <h1 class="marca">{campana.nombre}</h1>
-          <p class="lema" data-entrada="1">{campana.lema}</p>
-          <p class="subtitulo" data-entrada="1">{campana.subtitulo}</p>
+          <p class="lema" data-entrada="1">
+            {campana.lema}
+          </p>
+          <p class="subtitulo" data-entrada="1">
+            {campana.subtitulo}
+          </p>
         </div>
         <div class="portada-dibujo" data-entrada="2">
           <svg class="lienzo" viewBox="0 0 400 300" aria-hidden="true">
@@ -41,7 +47,12 @@ const etiqueta = (id: string) => `titulo-${id}`;
             <Cargador pose="enchufado" x={110} y={20} escala={1.4} />
           </svg>
         </div>
-        <p class="pista" data-entrada="3"><span class="flecha" data-pista aria-hidden="true">↓</span> {historia.pista}</p>
+        <p class="pista" data-entrada="3">
+          <span class="flecha" data-pista aria-hidden="true">
+            ↓
+          </span>{' '}
+          {historia.pista}
+        </p>
       </div>
     </header>
 
@@ -51,7 +62,12 @@ const etiqueta = (id: string) => `titulo-${id}`;
         <Cargador pose="roto" x={110} y={20} escala={1.4} />
       </svg>
       {escena.funciona.momentos.map((m, i) => (
-        <Momento momento={m} indice={i} id={i === 0 ? etiqueta('funciona') : undefined} giro={i === 0 ? 'izquierda' : 'derecha'} />
+        <Momento
+          momento={m}
+          indice={i}
+          id={i === 0 ? etiqueta('funciona') : undefined}
+          giro={i === 0 ? 'izquierda' : 'derecha'}
+        />
       ))}
     </Escena>
 
@@ -88,7 +104,12 @@ const etiqueta = (id: string) => `titulo-${id}`;
         </Contenedor>
       </svg>
       {escena.ecopunto.momentos.map((m, i) => (
-        <Momento momento={m} indice={i} id={i === 0 ? etiqueta('ecopunto') : undefined} giro={i === 0 ? 'izquierda' : 'derecha'} />
+        <Momento
+          momento={m}
+          indice={i}
+          id={i === 0 ? etiqueta('ecopunto') : undefined}
+          giro={i === 0 ? 'izquierda' : 'derecha'}
+        />
       ))}
     </Escena>
 
@@ -114,7 +135,9 @@ const etiqueta = (id: string) => `titulo-${id}`;
         <TarjetaCinta giro="derecha" cinta="esquinas" as="article">
           <h3 class="subtitulo-tarjeta">{acciones.titulo}</h3>
           <ul class="acciones">
-            {acciones.puntos.map((p) => <li>{p}</li>)}
+            {acciones.puntos.map((p) => (
+              <li>{p}</li>
+            ))}
           </ul>
         </TarjetaCinta>
       </div>
@@ -133,7 +156,9 @@ const etiqueta = (id: string) => `titulo-${id}`;
     </Seccion>
   </main>
   <footer class="pie">
-    <p><strong>{creditos.proyecto}</strong> · {creditos.institucion}</p>
+    <p>
+      <strong>{creditos.proyecto}</strong> · {creditos.institucion}
+    </p>
   </footer>
 </Base>
 
@@ -201,8 +226,13 @@ const etiqueta = (id: string) => `titulo-${id}`;
     color: var(--color-verde);
   }
   @media (min-width: 1024px) {
-    .portada-contenido { grid-template-columns: 1fr 1fr; align-items: center; }
-    .pista { grid-column: 1 / -1; }
+    .portada-contenido {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .pista {
+      grid-column: 1 / -1;
+    }
   }
 
   .subtitulo-tarjeta {
@@ -216,7 +246,9 @@ const etiqueta = (id: string) => `titulo-${id}`;
     display: grid;
     gap: var(--espacio-2);
   }
-  .dibujo-cierre { height: clamp(12rem, 50vw, 18rem); }
+  .dibujo-cierre {
+    height: clamp(12rem, 50vw, 18rem);
+  }
   .cierre-sub {
     margin-top: var(--espacio-3);
     text-align: center;

@@ -16,7 +16,8 @@ const { titulo, descripcion } = Astro.props;
 const canonica = Astro.site ? new URL('/', Astro.site).href.replace(/\/$/, '') : undefined;
 // Vista previa al compartir (parte #9): imagen sacada de la portada ilustrada (spec 0003).
 const imagenCompartir = Astro.site ? new URL('/og.png', Astro.site).href : undefined;
-const ALT_COMPARTIR = 'Ecopunto INTEC: un cargador con cara feliz enchufado a un celular, con el lema "Pequeños aparatos, grandes cambios".';
+const ALT_COMPARTIR =
+  'Ecopunto INTEC: un cargador con cara feliz enchufado a un celular, con el lema "Pequeños aparatos, grandes cambios".';
 ---
 
 <!doctype html>
@@ -29,7 +30,9 @@ const ALT_COMPARTIR = 'Ecopunto INTEC: un cargador con cara feliz enchufado a un
       {
         const r = document.documentElement;
         r.classList.add('js');
-        setTimeout(() => { if (!r.classList.contains('anim-listo')) r.classList.remove('js'); }, 3000);
+        setTimeout(() => {
+          if (!r.classList.contains('anim-listo')) r.classList.remove('js');
+        }, 3000);
       }
     </script>
     <title>{titulo}</title>

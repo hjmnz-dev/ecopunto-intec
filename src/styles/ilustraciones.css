@@ -12,17 +12,39 @@
   stroke-linejoin: round;
   fill: none;
 }
-.ilu-linea { fill: none; }
-.ilu-blanco { fill: var(--color-blanco); }
-.ilu-verde { fill: var(--color-verde); }
-.ilu-papel { fill: var(--color-papel); }
-.ilu-salvia { fill: var(--color-salvia); }
-.ilu-tinta { fill: var(--color-tinta); }
-.ilu-oscuro { fill: var(--color-carton-oscuro); }
-.ilu-gris { fill: var(--color-cuadricula); }
-.ilu-chispa { fill: var(--color-chispa); }
-.ilu-noche { fill: var(--color-noche); }
-.ilu-cuaderno { fill: var(--color-cuaderno); }
+.ilu-linea {
+  fill: none;
+}
+.ilu-blanco {
+  fill: var(--color-blanco);
+}
+.ilu-verde {
+  fill: var(--color-verde);
+}
+.ilu-papel {
+  fill: var(--color-papel);
+}
+.ilu-salvia {
+  fill: var(--color-salvia);
+}
+.ilu-tinta {
+  fill: var(--color-tinta);
+}
+.ilu-oscuro {
+  fill: var(--color-carton-oscuro);
+}
+.ilu-gris {
+  fill: var(--color-cuadricula);
+}
+.ilu-chispa {
+  fill: var(--color-chispa);
+}
+.ilu-noche {
+  fill: var(--color-noche);
+}
+.ilu-cuaderno {
+  fill: var(--color-cuaderno);
+}
 .ilu-texto {
   font-family: var(--font-titulo);
   font-weight: 900;

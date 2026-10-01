@@ -12,12 +12,14 @@ interface Props {
 }
 
 const { valor, frase, detalle, animar = true, giro = 'recto' } = Astro.props;
-const ESPACIO_FIJO = ' ';
+const ESPACIO_FIJO = String.fromCharCode(0xa0); // U+00A0, no se parte la línea entre la cifra y %
 const cifra = `${valor.toFixed(1)}${ESPACIO_FIJO}%`;
 ---
 
 <TarjetaCinta papel="salvia" cinta="lados" giro={giro} animar={animar} class="bloque-dato">
-  <p class="cifra" data-valor={valor}>{cifra}</p>
+  <p class="cifra" data-valor={valor}>
+    {cifra}
+  </p>
   <p class="frase">{frase}</p>
   {detalle && <p class="detalle">{detalle}</p>}
 </TarjetaCinta>

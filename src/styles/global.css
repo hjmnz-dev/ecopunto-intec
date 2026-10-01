@@ -3,10 +3,16 @@
    ScrollTrigger y con los saltos por ancla de la historia (spec 0003). */
 @media (prefers-reduced-motion: no-preference) {
   .js [data-animar],
-  .js [data-entrada] { visibility: hidden; }
+  .js [data-entrada] {
+    visibility: hidden;
+  }
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   background: var(--color-carton);
@@ -22,9 +28,13 @@ body {
   color: var(--color-tinta);
 }
 
-main { overflow-x: clip; }
+main {
+  overflow-x: clip;
+}
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-titulo);
   font-weight: 900;
   line-height: var(--interlineado-titulo);
@@ -32,9 +42,15 @@ h1, h2, h3 {
   margin: 0;
 }
 
-p { margin: 0; }
+p {
+  margin: 0;
+}
 
-img { max-width: 100%; height: auto; display: block; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 :focus-visible {
   outline: var(--foco-grosor) solid var(--color-tinta);

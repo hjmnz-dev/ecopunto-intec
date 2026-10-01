@@ -57,13 +57,23 @@ export function marcar(tl: Linea, contenedor: Element | null, inicio: number, du
 /** Aparece un momento (tarjeta) con opacidad y un pequeño ascenso. */
 export function aparecer(tl: Linea, el: Element | null | undefined, inicio: number, duracion = 0.12, primero = true) {
   if (!el) return;
-  tl.fromTo(el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'power1.out', duration: duracion, immediateRender: primero }, inicio);
+  tl.fromTo(
+    el,
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, ease: 'power1.out', duration: duracion, immediateRender: primero },
+    inicio,
+  );
 }
 
 /** Se va un momento para dejar lugar al siguiente. */
 export function desaparecer(tl: Linea, el: Element | null | undefined, inicio: number, duracion = 0.06) {
   if (!el) return;
-  tl.fromTo(el, { opacity: 1, y: 0 }, { opacity: 0, y: -16, ease: 'power1.in', duration: duracion, immediateRender: false }, inicio);
+  tl.fromTo(
+    el,
+    { opacity: 1, y: 0 },
+    { opacity: 0, y: -16, ease: 'power1.in', duration: duracion, immediateRender: false },
+    inicio,
+  );
 }
 
 /** Cifra y puntos de un momento: el tramo de conteo de ese momento. */
