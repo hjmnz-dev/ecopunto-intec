@@ -23,7 +23,7 @@ npm run build          # sitio estático en dist/
 npm run check          # tipos (astro check)
 npm run format:check   # Prettier (npm run format para corregir)
 npm run carton         # regenera la textura de cartón (src/assets/texturas/)
-npm run qr             # QR de SITIO_URL/?src=qr en qr/ (solo con SITIO_CONFIRMADO)
+npm run qr             # QR de SITIO_URL/qr en qr/ (solo con SITIO_CONFIRMADO)
 ```
 
 ## Specs
@@ -38,6 +38,7 @@ Stored in `docs/specs/`. Format: `docs/specs/NNNN-title/index.md` (más `rationa
 - El HTML servido es el estado final: toda animación va desde un estado inicial hacia él, dentro de `gsap.matchMedia` sin movimiento reducido. Sin JS o con movimiento reducido, todo se ve completo.
 - Nada dentro de una escena (`data-escena`) lleva `data-animar`; los dibujos SVG no llevan `id` ni filtros.
 - El dominio vive solo en `sitio.mjs` (`SITIO_URL`, sin barra final).
+- Visitas: Cloudflare Web Analytics, activado en el panel de Pages (sin script ni token en el repo). `/qr` es la misma página por reescritura en `public/_redirects`, sin `src/pages/qr.astro`. La página no usa cookies, `localStorage` ni `sessionStorage` (spec 0005).
 - Código y comentarios en español; formato con Prettier antes de cada commit.
 
 ## Git
