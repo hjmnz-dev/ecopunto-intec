@@ -1,0 +1,5 @@
+# Cloudflare Pages copia este archivo a dist/_redirects (spec 0005).
+# /qr sirve la misma página que / con estado 200, sin redirigir: la barra conserva /qr
+# y Web Analytics cuenta esas visitas como llegadas desde el QR.
+/qr / 200
+/qr/ / 200

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { titulo, descripcion } = Astro.props;
-// Canonical sin parámetros: ?src=qr no se copia al compartir.
+// Canonical sin ruta ni parámetros: /qr (y el viejo ?src=qr) no se copian al compartir (spec 0005).
 const canonica = Astro.site ? new URL('/', Astro.site).href.replace(/\/$/, '') : undefined;
 // Vista previa al compartir (parte #9): imagen sacada de la portada ilustrada (spec 0003).
 const imagenCompartir = Astro.site ? new URL('/og.png', Astro.site).href : undefined;

@@ -1,4 +1,4 @@
-// Genera qr/ecopunto-intec-qr.svg con SITIO_URL + '/?src=qr'.
+// Genera qr/ecopunto-intec-qr.svg con SITIO_URL + '/qr' (spec 0005: Web Analytics cuenta la ruta /qr aparte).
 // Se niega a generar hasta que el enlace esté confirmado en línea (AC-7).
 import { mkdir, writeFile } from 'node:fs/promises';
 import QRCode from 'qrcode';
@@ -11,7 +11,7 @@ if (!SITIO_CONFIRMADO) {
   process.exit(1);
 }
 
-const url = `${SITIO_URL}/?src=qr`;
+const url = `${SITIO_URL}/qr`;
 const svg = await QRCode.toString(url, {
   type: 'svg',
   errorCorrectionLevel: 'M',

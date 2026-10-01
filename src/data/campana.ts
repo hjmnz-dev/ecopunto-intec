@@ -102,7 +102,7 @@ export interface Campana {
   juego: Juego;
   quiz: Quiz;
   cierre: { titulo: string; subtitulo: string };
-  creditos: { proyecto: string; institucion: string };
+  creditos: { proyecto: string; institucion: string; privacidad: string };
 }
 
 const porque = {
@@ -397,5 +397,6 @@ export const campana = {
   creditos: {
     proyecto: 'Ecopunto INTEC',
     institucion: 'INTEC, Instituto Tecnológico de Santo Domingo',
+    privacidad: 'Contamos las visitas sin cookies y sin guardar datos personales.',
   },
 } as const satisfies Campana;

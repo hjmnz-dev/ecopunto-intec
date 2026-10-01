@@ -165,6 +165,7 @@ const etiqueta = (id: string) => `titulo-${id}`;
     <p>
       <strong>{creditos.proyecto}</strong> · {creditos.institucion}
     </p>
+    <p class="pie-privacidad">{creditos.privacidad}</p>
   </footer>
 </Base>
 
@@ -269,5 +270,11 @@ const etiqueta = (id: string) => `titulo-${id}`;
     background: var(--color-papel);
     text-align: center;
     box-shadow: var(--sombra-papel);
+  }
+
+  .pie-privacidad {
+    margin-top: var(--espacio-2);
+    font-size: var(--texto-chico);
+    color: var(--color-tinta-suave);
   }
 </style>
