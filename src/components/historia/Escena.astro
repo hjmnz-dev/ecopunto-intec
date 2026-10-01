@@ -71,6 +71,13 @@ const { id, tono = 'carton', etiqueta } = Astro.props;
   .escena-fija .dibujo { height: min(32svh, 16rem); }
   .escena-fija .momentos { grid-template-areas: 'momento'; }
   .escena-fija .momentos > :global(*) { grid-area: momento; }
+  /* Pantallas bajas: dibujo más chico y sin la leyenda de los puntos, para que la escena quepa */
+  @media (max-height: 800px) {
+    .escena-fija .escenario { gap: var(--espacio-2); padding-block: var(--espacio-3); }
+    .escena-fija .dibujo { height: min(24svh, 11rem); }
+    .escena-fija :global(.leyenda) { display: none; }
+    .escena-fija :global(.tarjeta) { padding: var(--espacio-3); }
+  }
   @media (min-width: 1024px) {
     .escena-fija .escenario {
       max-width: calc(var(--ancho-seccion) + 2 * var(--margen-lateral));

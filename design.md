@@ -1,10 +1,10 @@
 # Design: Ecopunto INTEC
 
-Guía del sistema visual y de movimiento de la página. La decisión completa y su razonamiento están en el [spec 0002](docs/specs/0002-sistema-visual-animacion/index.md). Los valores viven en el código: colores, letras y medidas en [`src/styles/tokens.css`](src/styles/tokens.css), movimiento en [`src/scripts/movimiento.ts`](src/scripts/movimiento.ts). Si este archivo y el código no coinciden, manda el código.
+Guía del sistema visual y de movimiento de la página. La decisión completa y su razonamiento están en el [spec 0002](docs/specs/0002-sistema-visual-animacion/index.md) (sistema visual) y el [spec 0003](docs/specs/0003-historia-scroll/index.md) (la historia al hacer scroll). Los valores viven en el código: colores, letras y medidas en [`src/styles/tokens.css`](src/styles/tokens.css), movimiento en [`src/scripts/movimiento.ts`](src/scripts/movimiento.ts). Si este archivo y el código no coinciden, manda el código.
 
 ## Character
 
-Un collage de campaña escolar hecho a mano, como la presentación de Canva "Ecopunto intec": cartón reciclado de fondo, notas de papel crema o salvia sujetas con cinta verde, títulos con letra de marcador sobre una tira de cuaderno. Cercano, ordenado y fácil de leer en un celular. La portada es la excepción: fotográfica y clara, como la diapositiva 1.
+Un collage de campaña escolar hecho a mano, como la presentación de Canva "Ecopunto intec": cartón reciclado de fondo, notas de papel crema o salvia sujetas con cinta verde, títulos con letra de marcador sobre una tira de cuaderno. Cercano, ordenado y fácil de leer en un celular. La página cuenta una historia al bajar (la vida de un cargador) con dibujos planos de trazo verde oscuro. La portada es la excepción al cartón: clara, con el cargador enchufado.
 
 ## Build mandate
 
@@ -31,6 +31,9 @@ Un collage de campaña escolar hecho a mano, como la presentación de Canva "Eco
 | `--color-si` | `#61b25c` | Etiqueta "sí" (texto en tinta) |
 | `--color-no` | `#ba5b5e` | Etiqueta "no" (texto blanco, solo grande) |
 | `--color-portada` | `#f5f5f2` | Fondo claro de la portada |
+| `--color-noche` | `#241c15` | Capa oscura de la escena "A la basura" (texto siempre sobre papel) |
+| `--color-verde` | `#2f8f3a` | Cifras de la historia (24 px o más), puntos y formas; nunca sobre salvia |
+| `--color-chispa` | `#f2b705` | Solo la chispa del cargador; nunca texto |
 
 Contrastes medidos: tinta sobre papel 10.9, sobre salvia 7.5, sobre cuaderno 12.9; tinta suave sobre salvia 5.5 y sobre papel 8.1; tinta sobre etiqueta "sí" 5.3; blanco sobre etiqueta "no" 4.4 (por eso la etiqueta siempre va a 24 px en 900); borde de foco sobre cartón 3.7.
 
@@ -41,7 +44,7 @@ Contrastes medidos: tinta sobre papel 10.9, sobre salvia 7.5, sobre cuaderno 12.
 | Títulos, cifras, etiquetas | Londrina Solid (`--font-titulo`) | 900, siempre en mayúsculas por CSS | `@fontsource/londrina-solid/latin-900.css`, precargada en `Base.astro` |
 | Párrafos y listas | Nunito Variable (`--font-texto`) | 400 y 700 | `@fontsource-variable/nunito/wght.css` (el navegador baja solo el archivo latino) |
 
-Tamaños: texto 18 px (`--texto-base`), notas 16 px (`--texto-chico`), título de sección `--titulo-seccion`, portada `--titulo-portada`, cifra `--dato-cifra`, etiqueta `--texto-etiqueta`.
+Tamaños: texto 18 px (`--texto-base`), notas 16 px (`--texto-chico`), título de sección `--titulo-seccion`, portada `--titulo-portada`, cifra `--dato-cifra`, etiqueta `--texto-etiqueta`, cifra de escena `--cifra-escena`, título de momento `--titulo-historia`.
 
 ## Texturas
 
@@ -64,6 +67,16 @@ Tamaños: texto 18 px (`--texto-base`), notas 16 px (`--texto-chico`), título d
 | `Icono` | `nombre` · `tamano?` · `etiqueta?` | SVG de Lucide desde `src/icons/`. Sin `etiqueta` es decorativo (`aria-hidden`) |
 
 Para sumar un ícono: copia su SVG de Lucide a `src/icons/` (sin `width`, `height` ni `class`) y agrega el nombre a `NombreIcono` en `Icono.astro`.
+
+## La historia (spec 0003)
+
+Enlace de salto, portada, cinco escenas (A funciona y se daña, B al cajón, C a la basura, D nadie sabe dónde, E el Ecopunto), guía, "Sobre la campaña", cierre y pie. Todo el texto sale de `src/data/campana.ts`.
+
+- **Modo estático** (el HTML servido): cada escena es una sección normal con el dibujo en su pose final y todos sus momentos apilados. Es lo que ve quien pidió menos movimiento, quien no tiene JS o si GSAP no carga.
+- **Modo fijo** (lo pone `src/scripts/escenas/` con la clase `escena-fija`, solo sin movimiento reducido y con 600 px de alto o más): la escena es una pista alta con un escenario `sticky`; los momentos se superponen y una línea de tiempo con scrub los reemplaza. Si una escena no cabe en la pantalla, se queda estática.
+- **Componentes** (`src/components/historia/`): `Escena` (`id`, `tono`, `etiqueta`), `Momento` (`momento`, `indice`), `Cifra` (`valor`; lector de pantalla lee el valor final una vez), `Puntos46` (`total`, `marcados`; un punto por persona encuestada), `Guia`.
+- **Dibujos** (`src/components/ilustraciones/`): `Cargador` (poses `enchufado`, `roto`, `guardado`, `basura`, `perdido`, `reciclado`), `Celular`, `Cajon`, `Basurero`, `Contenedor`, `Preguntas`. Cada uno devuelve un `<g>` sin `id` ni filtros; los recipientes tienen un slot `dentro` entre su capa de atrás y su frente. Las partes animables llevan `data-parte`. Colores con las clases de `src/styles/ilustraciones.css`.
+- **Reglas**: el HTML es el estado final y toda animación va desde un estado inicial hacia él; nada dentro de una escena lleva `data-animar`; el contenido de escena se anima solo con `opacity` y transformaciones; cifras y puntos siempre sobre papel crema.
 
 ## Movimiento
 
