@@ -21,7 +21,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 6 | Guía del Ecopunto | Release 1 | dropped (reemplazada por #14) |
 | 7 | Datos de la encuesta | Release 1 | dropped (reemplazada por #14) |
 | 8 | Cierre y pie de página | Release 1 | dropped (reemplazada por #14) |
-| 14 | Historia al hacer scroll | Release 1 | in-progress |
+| 14 | Historia al hacer scroll | Release 1 | done |
 | 9 | Publicación en línea y código QR | Release 1 | planned |
 | 10 | Contadores y gráficos animados | Release 2 | planned |
 | 11 | Juego "¿Va al Ecopunto?" | Release 3 | planned |
@@ -95,7 +95,7 @@ spec [0003](../specs/0003-historia-scroll/index.md) · code in `src/pages/index.
   - [x] Página completa en modo estático y publicada (AC-1, AC-3, AC-6, AC-7, AC-8, AC-10)
   - [x] Escenas fijas A a E con sus líneas de tiempo (AC-2, AC-3, AC-4, AC-5, AC-7)
   - [x] Pista, orden de registro, pruebas y `design.md` (AC-6, AC-8, AC-9, AC-10, AC-11)
-- [ ] Verify it: `/check verify historia al hacer scroll`
+- [x] Verify it: `/check verify historia al hacer scroll`
 
 ### 9. Publicación en línea y código QR
 Subir la página a un enlace público, con título y vista previa al compartirla en redes o WhatsApp, y generar el código QR para los materiales del campus.
