@@ -1,7 +1,9 @@
 // Textos y cifras de la campaña, tomados de la presentación de Canva "Ecopunto intec" (16 diapositivas).
 // Única fuente de contenido de la página: las secciones solo leen de aquí.
 // Se corrigió la ortografía del Canva (eléctronicos, a travez, Parcitiparon, práticas, facilmente).
-// Los textos de la historia (spec 0003) son nuevos; los demás vienen del Canva.
+// Los textos de la historia (spec 0003) y del juego (spec 0004) son nuevos; los demás vienen del Canva.
+
+import type { NombreIcono } from '../components/ui/Icono.astro';
 
 export interface Bloque {
   titulo: string;
@@ -26,6 +28,29 @@ export interface Momento {
 }
 
 export type IdEscena = 'funciona' | 'cajon' | 'basura' | 'nadie-sabe' | 'ecopunto';
+
+export interface ObjetoJuego {
+  nombre: string;
+  icono: NombreIcono;
+  va: boolean;
+  porque: string;
+}
+
+export interface Juego {
+  titulo: string;
+  intro: string;
+  sinJs: string;
+  botones: { si: string; no: string; siguiente: string; otraVez: string };
+  correcto: string;
+  incorrecto: string;
+  /** Se reemplazan {n} y {total}. */
+  progreso: string;
+  /** Se reemplazan {aciertos} y {total}. */
+  resultado: string;
+  /** Se usa el primero cuyo desde sea menor o igual a los aciertos. */
+  mensajes: readonly { desde: number; texto: string }[];
+  objetos: readonly ObjetoJuego[];
+}
 
 export interface EscenaHistoria {
   id: IdEscena;
@@ -52,6 +77,7 @@ export interface Campana {
   guia: { titulo: string; si: Bloque; no: Bloque; contenedor: Bloque };
   pasos: Bloque;
   sobre: { titulo: string };
+  juego: Juego;
   cierre: { titulo: string; subtitulo: string };
   creditos: { proyecto: string; institucion: string };
 }
@@ -244,6 +270,53 @@ export const campana = {
   },
 
   sobre: { titulo: 'Sobre la campaña' },
+
+  // Juego (spec 0004): textos nuevos, para que el equipo los revise.
+  juego: {
+    titulo: '¿Va al Ecopunto?',
+    intro: 'Toca si cada objeto va al Ecopunto o no. Son 8 objetos.',
+    sinJs: 'El juego necesita JavaScript. La guía de arriba tiene toda la información sobre qué depositar.',
+    botones: { si: 'Va al Ecopunto', no: 'No va', siguiente: 'Siguiente', otraVez: 'Jugar otra vez' },
+    correcto: '¡Correcto!',
+    incorrecto: 'No exactamente.',
+    progreso: '{n} de {total}',
+    resultado: 'Acertaste {aciertos} de {total}',
+    mensajes: [
+      { desde: 8, texto: '¡Perfecto! Ya sabes usar el Ecopunto.' },
+      { desde: 5, texto: '¡Muy bien! Repasa la guía para no fallar ninguno.' },
+      { desde: 0, texto: 'Vale la pena repasar la guía de arriba antes de usar el Ecopunto.' },
+    ],
+    objetos: [
+      {
+        nombre: 'Cargador',
+        icono: 'plug-zap',
+        va: true,
+        porque: 'Es un accesorio electrónico pequeño: va al Ecopunto.',
+      },
+      {
+        nombre: 'Cable',
+        icono: 'cable',
+        va: true,
+        porque: 'Los cables tienen cobre y plástico que se recuperan: van al Ecopunto.',
+      },
+      {
+        nombre: 'Audífonos',
+        icono: 'headphones',
+        va: true,
+        porque: 'Son un aparato electrónico: van al Ecopunto, nunca a la basura común.',
+      },
+      { nombre: 'Mouse', icono: 'mouse', va: true, porque: 'Es un accesorio electrónico: va al Ecopunto.' },
+      { nombre: 'Restos de comida', icono: 'apple', va: false, porque: 'Es un desecho orgánico: no va al Ecopunto.' },
+      { nombre: 'Botella', icono: 'milk', va: false, porque: 'Las botellas no son electrónicas: no van al Ecopunto.' },
+      {
+        nombre: 'Vaso',
+        icono: 'cup-soda',
+        va: false,
+        porque: 'Un vaso no es un residuo electrónico: no va al Ecopunto.',
+      },
+      { nombre: 'Papel sanitario', icono: 'scroll-text', va: false, porque: 'Es basura común: no va al Ecopunto.' },
+    ],
+  },
 
   cierre: {
     titulo: 'Tu residuo electrónico tiene un lugar',

@@ -9,6 +9,7 @@ import ListaIconos from '../components/ui/ListaIconos.astro';
 import Escena from '../components/historia/Escena.astro';
 import Momento from '../components/historia/Momento.astro';
 import Guia from '../components/historia/Guia.astro';
+import Juego from '../components/historia/Juego.astro';
 import Cargador from '../components/ilustraciones/Cargador.astro';
 import Celular from '../components/ilustraciones/Celular.astro';
 import Cajon from '../components/ilustraciones/Cajon.astro';
@@ -114,6 +115,8 @@ const etiqueta = (id: string) => `titulo-${id}`;
     </Escena>
 
     <Guia />
+
+    <Juego />
 
     <Seccion id="sobre">
       <TituloSeccion>{sobre.titulo}</TituloSeccion>

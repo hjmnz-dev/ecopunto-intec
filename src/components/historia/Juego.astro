@@ -1,0 +1,185 @@
+---
+// Juego "¿Va al Ecopunto?" (spec 0004): un objeto a la vez, dos botones, porqué de cada respuesta.
+// Sin JS se ve solo el aviso; src/scripts/juego.ts muestra el juego y maneja el estado en memoria.
+import Seccion from '../ui/Seccion.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import TarjetaCinta from '../ui/TarjetaCinta.astro';
+import Icono from '../ui/Icono.astro';
+import { campana } from '../../data/campana';
+
+const { juego } = campana;
+---
+
+<Seccion id="juego" ancho="texto">
+  <TituloSeccion>{juego.titulo}</TituloSeccion>
+  <TarjetaCinta giro="izquierda">
+    <p>{juego.intro}</p>
+    <p class="sin-js" data-juego-sin-js>
+      {juego.sinJs}
+    </p>
+  </TarjetaCinta>
+
+  <div class="juego" data-juego hidden>
+    <TarjetaCinta animar={false} cinta="esquinas">
+      <div class="pregunta" data-juego-pregunta>
+        <p class="progreso" data-juego-progreso></p>
+        <div class="objeto">
+          {juego.objetos.map((o, i) => (
+            <div class="objeto-dibujo" data-juego-icono={i} hidden>
+              <Icono nombre={o.icono} tamano="5rem" />
+            </div>
+          ))}
+          <h3 class="objeto-nombre" tabindex="-1" data-juego-nombre></h3>
+        </div>
+        <div class="botones">
+          <button type="button" class="boton boton-si" data-juego-boton="si">
+            <Icono nombre="check" tamano="1.25em" />
+            {juego.botones.si}
+          </button>
+          <button type="button" class="boton boton-no" data-juego-boton="no">
+            <Icono nombre="x" tamano="1.25em" />
+            {juego.botones.no}
+          </button>
+        </div>
+        <div class="respuesta" data-juego-respuesta>
+          <span class="marca marca-bien" aria-hidden="true">
+            <Icono nombre="check" tamano="2rem" />
+          </span>
+          <span class="marca marca-mal" aria-hidden="true">
+            <Icono nombre="x" tamano="2rem" />
+          </span>
+          <p class="estado" aria-live="polite" data-juego-estado></p>
+        </div>
+        <button type="button" class="boton boton-siguiente" data-juego-siguiente hidden>
+          {juego.botones.siguiente}
+        </button>
+      </div>
+      <div class="final" data-juego-final hidden>
+        <h3 class="resultado" tabindex="-1" data-juego-resultado></h3>
+        <p class="mensaje" data-juego-mensaje></p>
+        <button type="button" class="boton boton-siguiente" data-juego-otra>
+          {juego.botones.otraVez}
+        </button>
+      </div>
+    </TarjetaCinta>
+  </div>
+  <script type="application/json" data-juego-datos set:html={JSON.stringify(juego)} />
+</Seccion>
+
+<script>
+  import '../../scripts/juego.ts';
+</script>
+
+<style>
+  .sin-js {
+    margin-top: var(--espacio-3);
+    font-weight: 700;
+  }
+  .pregunta,
+  .final {
+    display: grid;
+    gap: var(--espacio-4);
+    justify-items: center;
+    text-align: center;
+  }
+  .progreso {
+    font-weight: 700;
+    color: var(--color-tinta-suave);
+  }
+  .objeto {
+    display: grid;
+    justify-items: center;
+    gap: var(--espacio-2);
+  }
+  .objeto-dibujo {
+    color: var(--color-tinta);
+  }
+  .objeto-nombre,
+  .resultado {
+    font-size: var(--titulo-historia);
+  }
+  .botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espacio-3);
+  }
+  .boton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espacio-2);
+    min-height: 44px;
+    padding: var(--espacio-2) var(--espacio-4);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-titulo);
+    font-weight: 900;
+    font-size: var(--texto-etiqueta);
+    text-transform: uppercase;
+    box-shadow: var(--sombra-papel);
+    cursor: pointer;
+  }
+  .boton:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .boton-si {
+    background: var(--color-si);
+    color: var(--color-tinta);
+  }
+  .boton-no {
+    background: var(--color-no);
+    color: var(--color-blanco);
+  }
+  .boton-siguiente {
+    background: var(--color-tinta);
+    color: var(--color-cuaderno);
+  }
+  .respuesta {
+    display: none;
+    align-items: flex-start;
+    gap: var(--espacio-3);
+    width: 100%;
+    padding: var(--espacio-3);
+    text-align: left;
+    background: var(--color-cuaderno);
+    border-left: 6px solid var(--color-tinta);
+  }
+  .respuesta[data-resultado] {
+    display: flex;
+  }
+  .respuesta[data-resultado='bien'] {
+    border-left-color: var(--color-si);
+  }
+  .respuesta[data-resultado='mal'] {
+    border-left-color: var(--color-no);
+  }
+  .marca {
+    display: none;
+  }
+  .respuesta[data-resultado='bien'] .marca-bien {
+    display: block;
+    color: var(--color-verde);
+  }
+  .respuesta[data-resultado='mal'] .marca-mal {
+    display: block;
+    color: var(--color-no);
+  }
+  .estado {
+    font-weight: 700;
+  }
+  .mensaje {
+    font-weight: 700;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .respuesta[data-resultado] {
+      animation: aparecer 0.25s ease-out;
+    }
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+    }
+  }
+</style>
