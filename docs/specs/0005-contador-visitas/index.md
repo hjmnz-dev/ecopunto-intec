@@ -121,7 +121,7 @@ Skateboard: cada paso deja la página publicada y presentable. El QR se regenera
 ## Follow-up
 
 - [ ] Antes de entregar el informe (y antes de 6 meses), capturar el panel con el total y la ruta `/qr` para el periodo de la campaña.
-- [ ] El spec 0001 todavía describe el QR con `/?src=qr` (AC-7 y su sección del QR); que `/sync` lo marque como desactualizado en ese punto.
+- [x] El spec 0001 todavía describe el QR con `/?src=qr` (AC-7 y su sección del QR); que `/sync` lo marque como desactualizado en ese punto. Hecho: `/architect` actualizó el spec 0001 el 2026-10-01.
 - [ ] Imprimir el QR nuevo (2.5 cm o más) solo después del paso 6.
 
 ## Rationale

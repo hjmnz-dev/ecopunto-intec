@@ -5,7 +5,7 @@
 
 ## Summary
 
-La página del Ecopunto INTEC se construye con Astro (un generador de páginas estáticas) en TypeScript, con animaciones al hacer scroll hechas con GSAP, y se publica gratis en Cloudflare Pages en `ecopunto-intec.pages.dev`. Se eligió así porque la mayoría entra desde un QR en el celular: la página tiene que pesar poco, animarse igual en todos los navegadores, respetar a quien pidió menos movimiento y tener un enlace corto que nunca cambie. Para construir, esto significa un proyecto Astro fuera de OneDrive, en un repo público de GitHub que Cloudflare publica solo con cada push. El QR apunta a `/?src=qr` y no se imprime hasta que ese enlace esté en línea y confirmado.
+La página del Ecopunto INTEC se construye con Astro (un generador de páginas estáticas) en TypeScript, con animaciones al hacer scroll hechas con GSAP, y se publica gratis en Cloudflare Pages en `ecopunto-intec.pages.dev`. Se eligió así porque la mayoría entra desde un QR en el celular: la página tiene que pesar poco, animarse igual en todos los navegadores, respetar a quien pidió menos movimiento y tener un enlace corto que nunca cambie. Para construir, esto significa un proyecto Astro fuera de OneDrive, en un repo público de GitHub que Cloudflare publica solo con cada push. El QR apuntaba a `/?src=qr`; desde el spec 0005 apunta a `/qr` (la misma página, que Web Analytics cuenta aparte), y no se imprime hasta que ese enlace esté en línea y confirmado.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ La página del Ecopunto INTEC se construye con Astro (un generador de páginas e
 - **AC-4**: `npm run build` termina sin errores y deja un sitio 100 % estático en `dist/`.
 - **AC-5**: `npm run check` (chequeo de tipos de Astro con TypeScript estricto) pasa sin errores.
 - **AC-6**: El proyecto completo (incluidos `docs/`, `.agents/`, `.claude/`, `.mcp.json` y `skills-lock.json`) vive en `C:\dev\ecopunto-intec`, es un repo git con el `.gitignore` y `.gitattributes` de abajo y `package-lock.json` versionado, y está subido como repo público `ecopunto-intec` en GitHub.
-- **AC-7**: El repo está conectado a Cloudflare Pages: un push a `main` publica, y `SITIO_URL` y `SITIO_URL/?src=qr` abren por HTTPS en un celular (respuesta 200, sin redirección que pierda `?src=qr`). Con eso, `SITIO_CONFIRMADO` pasa a `true`.
+- **AC-7**: El repo está conectado a Cloudflare Pages: un push a `main` publica, y `SITIO_URL` y `SITIO_URL/?src=qr` abren por HTTPS en un celular (respuesta 200, sin redirección que pierda `?src=qr`). Con eso, `SITIO_CONFIRMADO` pasa a `true`. _Actualizado por el spec 0005: el QR usa `SITIO_URL/qr`; `?src=qr` sigue respondiendo 200._
 
 ## Decision
 
@@ -52,7 +52,7 @@ La página se construye con Astro y TypeScript estricto, se anima con GSAP y Scr
 | Dominio | `https://ecopunto-intec.pages.dev`, sin barra final | Gratis y estable; se confirma en línea (AC-7) antes de generar el QR. |
 | QR | Script `npm run qr` con el paquete `qrcode`, SVG estático | Vectorial para imprimir, versionado, sin servicio intermedio que caduque. |
 | Vista previa al compartir | `public/og.png` de 1200×630 exportada de Canva + etiquetas Open Graph | Cero código; se ve con el estilo de la campaña. |
-| Analítica | Ninguna por ahora; Cloudflare Web Analytics en #13 | Mismo proveedor, sin cookies; se decide en su propio spec. |
+| Analítica | Cloudflare Web Analytics, decidido en el spec 0005 (#13) | Mismo proveedor, sin cookies; se activa en el panel de Pages, sin código en el repo. |
 | Formato y lint | Se decide en #2 (`/audit`) | Parte propia en el scope. |
 
 ### Configuración decidida
@@ -68,7 +68,7 @@ ecopunto-intec/
 ├─ tsconfig.json         # extends astro/tsconfigs/strict
 ├─ scripts/qr.mjs        # genera qr/ecopunto-intec-qr.svg
 ├─ qr/                   # QR generado, versionado, no se publica
-├─ public/               # og.png, favicon, se copian tal cual
+├─ public/               # og.png, favicon, _redirects (/qr, spec 0005), se copian tal cual
 ├─ docs/  .agents/  .claude/  .mcp.json  skills-lock.json   # se mueven con el proyecto
 └─ src/
    ├─ pages/index.astro
@@ -142,8 +142,8 @@ Reglas:
 
 **Enlaces y QR**:
 - `sitio.mjs` exporta `SITIO_URL` (sin barra final; el archivo lanza un error si termina en `/`) y `SITIO_CONFIRMADO` (`false` hasta cumplir AC-7). Es la única fuente del dominio: la usan `astro.config.mjs` (`site`) y `scripts/qr.mjs`.
-- `scripts/qr.mjs` se niega a generar si `SITIO_CONFIRMADO` es `false`, codifica `SITIO_URL + '/?src=qr'` en SVG (corrección de errores M, margen de 4 módulos, negro sobre blanco, sin colores de campaña ni fondo transparente) e imprime en consola la URL que codificó.
-- La URL canónica y `og:url` son `SITIO_URL` sin parámetros, para que `?src=qr` no se copie al compartir. La página ignora `?src=qr` hasta #13.
+- `scripts/qr.mjs` se niega a generar si `SITIO_CONFIRMADO` es `false`, codifica `SITIO_URL + '/qr'` en SVG (antes `'/?src=qr'`; cambió en el spec 0005) (corrección de errores M, margen de 4 módulos, negro sobre blanco, sin colores de campaña ni fondo transparente) e imprime en consola la URL que codificó.
+- La URL canónica y `og:url` son `SITIO_URL` sin ruta ni parámetros, para que `/qr` (o el viejo `?src=qr`) no se copie al compartir. `/qr` sirve la misma página por reescritura en `public/_redirects` (spec 0005).
 - Restricciones para #9: QR impreso de al menos 2.5 cm por lado; `og.png` de menos de 300 KB (o JPG), con `og:image:width` y `og:image:height` declarados, más `og:type website`, `og:locale es_DO` y `twitter:card summary_large_image`.
 
 **Value sourcing**:
@@ -152,7 +152,7 @@ Reglas:
 | Dominio público | `https://ecopunto-intec.pages.dev` | Subdominio que asigna Cloudflare al proyecto; se copia a `SITIO_URL` después de verlo en el panel. |
 | Si el dominio ya se puede imprimir | `SITIO_CONFIRMADO` | `sitio.mjs`, pasa a `true` al cumplir AC-7. |
 | `site`, canonical, `og:url`, URL absoluta de `og:image` | Derivados | `SITIO_URL` (`new URL('/og.png', Astro.site)` para la imagen). |
-| URL dentro del QR | `SITIO_URL/?src=qr` | Derivada de `SITIO_URL` + marca `src=qr` decidida aquí. |
+| URL dentro del QR | `SITIO_URL/qr` | Derivada de `SITIO_URL` + la ruta `/qr` del spec 0005 (antes `/?src=qr`, decidida aquí). |
 | `<title>`, descripción, textos, cifras, listas, pasos | Contenido de la campaña | `src/data/campana.ts` (parte #4); `Base.astro` los recibe como props. |
 | Colores, fuentes, tiempos de animación | Tokens | `src/styles/tokens.css` y paquetes Fontsource (parte #3). |
 | Si se anima o no | `prefers-reduced-motion` + clase `js` | Preferencia del sistema, leída por el CSS y por `gsap.matchMedia()`. |
@@ -164,7 +164,7 @@ Reglas:
 - **#3**: tokens, fuentes concretas y ajuste fino de movimiento sobre el contrato de arriba.
 - **#4**: `src/data/campana.ts`, las imágenes en `src/assets/` y el favicon.
 - **#9**: meta Open Graph, `og.png`, generar el QR (con el dominio ya confirmado) e imprimirlo.
-- **#13**: activar Cloudflare Web Analytics y contar `src=qr`.
+- **#13**: activar Cloudflare Web Analytics y contar las llegadas por QR con la ruta `/qr` (spec 0005).
 
 ## Consequences
 
@@ -187,10 +187,10 @@ Reglas:
 
 ## Follow-up
 
-- [ ] Confirmar al crear la cuenta que el plan gratuito de Cloudflare sigue sin pedir tarjeta y con builds suficientes (dato de conocimiento, no verificado en la web).
+- [x] Confirmar al crear la cuenta que el plan gratuito de Cloudflare sigue sin pedir tarjeta y con builds suficientes (dato de conocimiento, no verificado en la web). Resuelto: la cuenta gratuita publica cada push desde el 2026-09-30.
 - [ ] Revisar tras la Release 1 si hace falta scroll suavizado en computadora (Lenis solo con mouse y apagado con movimiento reducido).
-- [ ] Anotar en el `AGENTS.md` raíz (parte #2, `/audit`) el stack, la versión de Astro, el contrato de animación y la sección `## Agent skills`: `gsap-core`, `gsap-scrolltrigger`, `cloudflare`, `wrangler`, `web-perf`, `accessibility` (en `.agents/skills/`), con MCP servers Astro Docs y Cloudflare, y `astro-developer` como rechazada (es para contribuir al monorepo de Astro, no para usarlo).
-- [ ] Conectar tú los servidores MCP elegidos: Astro Docs (`https://mcp.docs.astro.build/mcp`) y el de Cloudflare (la URL oficial está en la documentación de Cloudflare, sección MCP servers).
+- [x] Anotar en el `AGENTS.md` raíz (parte #2, `/audit`) el stack, la versión de Astro, el contrato de animación y la sección `## Agent skills`: `gsap-core`, `gsap-scrolltrigger`, `cloudflare`, `wrangler`, `web-perf`, `accessibility` (en `.agents/skills/`), con MCP servers Astro Docs y Cloudflare, y `astro-developer` como rechazada (es para contribuir al monorepo de Astro, no para usarlo). Hecho en la parte #2; el MCP de Cloudflare no quedó anotado porque no se conectó.
+- [ ] Conectar tú los servidores MCP elegidos: Astro Docs (`https://mcp.docs.astro.build/mcp`) y el de Cloudflare (la URL oficial está en la documentación de Cloudflare, sección MCP servers). Astro Docs ya está conectado (`.mcp.json`); falta el de Cloudflare, que es opcional.
 
 ## Rationale
 

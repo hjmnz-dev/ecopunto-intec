@@ -202,10 +202,10 @@ Skateboard: primero una muestra quieta completa y presentable, luego se suma el 
 
 ## Follow-up
 
-- [ ] #4 exporta la imagen de la diapositiva 1 para la portada. Esa imagen trae el logo y el lema incrustados como dibujo: #5 tiene que poner el lema como texto real y un `alt` que describa la imagen.
-- [ ] #10 (contadores) lee `data-valor` de la cifra de `BloqueDato` en vez de parsear el texto.
-- [ ] Anotar en el `AGENTS.md` raíz (parte #2, `/audit`) que `design.md` es la fuente del estilo, los valores de `data-animar` y la regla de "nada de colores fuera de `tokens.css`".
-- [ ] El "Done when" del scope nombra tres componentes; este spec deja siete por decisión tuya. No hace falta cambiar el scope.
+- [x] #4 exporta la imagen de la diapositiva 1 para la portada. Esa imagen trae el logo y el lema incrustados como dibujo: #5 tiene que poner el lema como texto real y un `alt` que describa la imagen. Ya no aplica: el Canva no permite descargas y la portada es un dibujo SVG con el lema como texto real (spec 0003).
+- [x] #10 (contadores) lee `data-valor` de la cifra de `BloqueDato` en vez de parsear el texto. Ya no aplica: #10 quedó descartada (cubierta por la parte #14, spec 0003).
+- [x] Anotar en el `AGENTS.md` raíz (parte #2, `/audit`) que `design.md` es la fuente del estilo, los valores de `data-animar` y la regla de "nada de colores fuera de `tokens.css`". Hecho: `AGENTS.md` dice que `design.md` manda y que solo `tokens.css` lleva colores; los valores de `data-animar` viven en `design.md`.
+- [x] El "Done when" del scope nombra tres componentes; este spec deja siete por decisión tuya. No hace falta cambiar el scope.
 
 ## Rationale
 

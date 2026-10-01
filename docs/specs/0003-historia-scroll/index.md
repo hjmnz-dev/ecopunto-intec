@@ -190,8 +190,8 @@ Skateboard: primero la historia completa, quieta y publicable; después se fija 
 ## Follow-up
 
 - [ ] Nombres de los integrantes para el pie (no están en el Canva).
-- [ ] La parte #10 (contadores y gráficos) queda cubierta en gran parte por las cifras y grillas de esta historia; revisarla al cerrar la Release 1.
-- [ ] La imagen para compartir (#9) puede salir de una captura de la portada ilustrada.
+- [x] La parte #10 (contadores y gráficos) queda cubierta en gran parte por las cifras y grillas de esta historia; revisarla al cerrar la Release 1. Resuelto: #10 quedó descartada en el scope.
+- [x] La imagen para compartir (#9) puede salir de una captura de la portada ilustrada. Hecho: `public/og.png` sale de la portada ilustrada.
 
 ## Rationale
 
