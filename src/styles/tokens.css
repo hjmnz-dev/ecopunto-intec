@@ -1,4 +1,70 @@
-/* Tokens de diseño: colores, tipografías y tiempos de animación.
-   Los define la parte #3 (Sistema visual y animación). */
+/* Tokens de diseño (spec 0002). Único archivo de src/ con colores literales.
+   Valores medidos en el Canva "Ecopunto intec". Guía completa en design.md. */
 :root {
+  /* Colores */
+  --color-carton: #ae7a4a;
+  --color-carton-oscuro: #8f6238;
+  --color-papel: #eee4cb;
+  --color-salvia: #bfc296;
+  --color-cuaderno: #fbf7ee;
+  --color-cuadricula: #c9d6e3;
+  --color-cinta: rgb(97 178 92 / 0.85);
+  --color-tinta: #15322b;
+  --color-tinta-suave: #2c463e;
+  --color-si: #61b25c;
+  --color-no: #ba5b5e;
+  --color-blanco: #ffffff;
+  --color-portada: #f5f5f2;
+  --color-sombra: rgb(60 35 10 / 0.5);
+  --color-sombra-corta: rgb(0 0 0 / 0.08);
+
+  /* Tipografía */
+  --font-titulo: 'Londrina Solid', 'Arial Narrow', sans-serif;
+  --font-texto: 'Nunito Variable', system-ui, sans-serif;
+  --texto-base: 1.125rem;
+  --texto-chico: 1rem;
+  --texto-etiqueta: 1.5rem;
+  --titulo-seccion: clamp(2.25rem, 8vw, 3.75rem);
+  --titulo-portada: clamp(3rem, 14vw, 6rem);
+  --dato-cifra: clamp(3.5rem, 18vw, 6rem);
+  --interlineado-texto: 1.5;
+  --interlineado-titulo: 0.95;
+
+  /* Espacios */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 1rem;
+  --espacio-4: 1.5rem;
+  --espacio-5: 2.5rem;
+  --espacio-6: 4rem;
+  --relleno-papel: var(--espacio-4);
+  --espacio-seccion: var(--espacio-6);
+  --margen-lateral: 1rem;
+
+  /* Anchos */
+  --ancho-texto: 40rem;
+  --ancho-seccion: 64rem;
+
+  /* Papel */
+  --giro-izquierda: -1.5deg;
+  --giro-derecha: 1.2deg;
+  --sombra-papel: 0 2px 0 var(--color-sombra-corta), 0 10px 20px -10px var(--color-sombra);
+  /* Ruido de papel: SVG en línea de menos de 1 KB, sin colores hex (tinte por matriz, alfa ~0.06) */
+  --textura-papel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.24 0 0 0 0 0.16 0 0 0 0 0.08 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Cinta */
+  --cinta-ancho: 5.5rem;
+  --cinta-alto: 1.6rem;
+  --cinta-ancho-titulo: 4rem;
+  --cinta-alto-titulo: 1.4rem;
+
+  /* Foco */
+  --foco-grosor: 3px;
+  --foco-separacion: 2px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --margen-lateral: 1.5rem;
+  }
 }

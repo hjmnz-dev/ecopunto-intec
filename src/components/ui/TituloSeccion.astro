@@ -1,0 +1,52 @@
+---
+// Título de sección sobre una tira de cuaderno con cinta (spec 0002).
+// Escribe el texto en mayúsculas y minúsculas normales: las mayúsculas vienen de CSS.
+interface Props {
+  nivel?: 2 | 3;
+  id?: string;
+}
+
+const { nivel = 2, id } = Astro.props;
+const Encabezado = nivel === 2 ? 'h2' : 'h3';
+---
+
+<div class="tira" data-animar="titulo">
+  <span class="cinta cinta-inicio" aria-hidden="true"></span>
+  <span class="cinta cinta-fin" aria-hidden="true"></span>
+  <Encabezado id={id} class="titulo"><slot /></Encabezado>
+</div>
+
+<style>
+  .tira {
+    position: relative;
+    justify-self: center;
+    max-width: 100%;
+    padding: var(--espacio-3) 2.5rem;
+    background-color: var(--color-cuaderno);
+    background-image:
+      repeating-linear-gradient(to right, var(--color-cuadricula) 0 1px, transparent 1px 22px),
+      repeating-linear-gradient(to bottom, var(--color-cuadricula) 0 1px, transparent 1px 22px);
+    box-shadow: var(--sombra-papel);
+    text-align: center;
+  }
+  .titulo {
+    font-size: var(--titulo-seccion);
+    color: var(--color-tinta);
+    overflow-wrap: anywhere;
+    padding-top: 0.1em;
+  }
+  .cinta {
+    width: var(--cinta-ancho-titulo);
+    height: var(--cinta-alto-titulo);
+    top: -0.6rem;
+  }
+  .cinta-inicio {
+    left: -0.6rem;
+    rotate: -8deg;
+  }
+  .cinta-fin {
+    right: -0.6rem;
+    rotate: 8deg;
+    transform-origin: right center;
+  }
+</style>

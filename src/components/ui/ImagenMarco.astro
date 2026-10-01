@@ -1,0 +1,81 @@
+---
+// Imagen en un marco de papel con cinta (spec 0002). `alt` es obligatoria;
+// usa alt="" solo si la imagen es decorativa.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  anchos?: number[];
+  sizes?: string;
+  giro?: 'izquierda' | 'recto' | 'derecha';
+  cinta?: 'arriba' | 'esquinas' | 'lados' | 'ninguna';
+  animar?: boolean;
+}
+
+const {
+  src,
+  alt,
+  anchos = [320, 640, 960],
+  sizes = '(min-width: 768px) 50vw, 100vw',
+  giro = 'recto',
+  cinta = 'arriba',
+  animar = true,
+} = Astro.props;
+
+const cintas: string[] =
+  cinta === 'arriba' ? ['arriba'] :
+  cinta === 'esquinas' ? ['esquina-inicio', 'esquina-fin'] :
+  cinta === 'lados' ? ['lado-inicio', 'lado-fin'] :
+  [];
+---
+
+<figure
+  class:list={['marco', 'papel', `giro-${giro}`]}
+  data-giro={giro}
+  data-animar={animar ? 'tarjeta' : undefined}
+>
+  {cintas.map((pos) => <span class:list={['cinta', `cinta-${pos}`]} aria-hidden="true" />)}
+  <Picture src={src} alt={alt} widths={anchos} sizes={sizes} formats={['avif', 'webp']} loading="lazy" />
+</figure>
+
+<style>
+  .marco {
+    --papel: var(--color-cuaderno);
+    margin: 0;
+    padding: var(--espacio-2);
+  }
+  .marco :global(img) { width: 100%; height: auto; }
+
+  .giro-izquierda { rotate: var(--giro-izquierda); }
+  .giro-derecha { rotate: var(--giro-derecha); }
+
+  .cinta-arriba {
+    top: -0.8rem;
+    left: calc(50% - var(--cinta-ancho) / 2);
+    rotate: 3deg;
+  }
+  .cinta-esquina-inicio {
+    top: -0.4rem;
+    left: -1rem;
+    rotate: -35deg;
+  }
+  .cinta-esquina-fin {
+    bottom: -0.4rem;
+    right: -1rem;
+    rotate: -35deg;
+    transform-origin: right center;
+  }
+  .cinta-lado-inicio {
+    left: 0;
+    top: calc(50% - var(--cinta-alto) / 2 - var(--cinta-ancho) / 2);
+    rotate: 90deg;
+  }
+  .cinta-lado-fin {
+    right: 0;
+    top: calc(50% - var(--cinta-alto) / 2 + var(--cinta-ancho) / 2);
+    rotate: 90deg;
+    transform-origin: right center;
+  }
+</style>

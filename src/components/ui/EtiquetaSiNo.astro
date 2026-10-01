@@ -1,0 +1,43 @@
+---
+// Sello "sí" o "no" para la guía del Ecopunto (spec 0002).
+// Siempre a --texto-etiqueta (24 px en 900): el blanco sobre --color-no solo pasa AA como texto grande.
+import Icono from './Icono.astro';
+
+interface Props {
+  tipo: 'si' | 'no';
+  texto: string;
+}
+
+const { tipo, texto } = Astro.props;
+---
+
+<p class:list={['etiqueta', `etiqueta-${tipo}`]}>
+  <Icono nombre={tipo === 'si' ? 'check' : 'x'} tamano="1.25em" />
+  <span>{texto}</span>
+</p>
+
+<style>
+  .etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espacio-2);
+    margin: 0;
+    padding: var(--espacio-2) var(--espacio-3);
+    font-family: var(--font-titulo);
+    font-weight: 900;
+    font-size: var(--texto-etiqueta);
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: var(--sombra-papel);
+    rotate: -2deg;
+  }
+  .etiqueta-si {
+    background-color: var(--color-si);
+    color: var(--color-tinta);
+  }
+  .etiqueta-no {
+    background-color: var(--color-no);
+    color: var(--color-blanco);
+    rotate: 2deg;
+  }
+</style>

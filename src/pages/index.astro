@@ -1,28 +1,98 @@
 ---
 import Base from '../layouts/Base.astro';
+import Seccion from '../components/ui/Seccion.astro';
+import TituloSeccion from '../components/ui/TituloSeccion.astro';
+import TarjetaCinta from '../components/ui/TarjetaCinta.astro';
+import BloqueDato from '../components/ui/BloqueDato.astro';
+import ListaIconos from '../components/ui/ListaIconos.astro';
+import ImagenMarco from '../components/ui/ImagenMarco.astro';
+import EtiquetaSiNo from '../components/ui/EtiquetaSiNo.astro';
+import reciclar from '../assets/muestra/reciclar.png';
+
+// Página de muestra temporal del sistema visual (spec 0002). La reemplaza la portada en la parte #5.
+// Los textos vienen del Canva de la campaña; pasan a src/data/campana.ts en la parte #4.
 ---
 
 <Base titulo="Ecopunto INTEC" descripcion="Pequeños aparatos, grandes cambios.">
   <main>
-    <!-- Sección de prueba temporal (AC-1). La reemplaza la portada en la parte #5. -->
-    <section class="prueba-inicio">
-      <h1>Ecopunto INTEC</h1>
-      <p>Baja para ver la animación de prueba.</p>
-    </section>
-    <section class="prueba-animada">
-      <h2 data-animar>Pequeños aparatos, grandes cambios</h2>
-      <p data-animar>Esta sección entra animada al hacer scroll.</p>
-      <p data-animar>Con movimiento reducido aparece directamente.</p>
-    </section>
+    <Seccion id="inicio" ancho="texto">
+      <TarjetaCinta cinta="esquinas" giro="izquierda" as="article">
+        <h1 class="marca">Ecopunto INTEC</h1>
+        <p class="lema">Pequeños aparatos, grandes cambios.</p>
+        <p class="nota">Muestra temporal del sistema visual.</p>
+      </TarjetaCinta>
+    </Seccion>
+
+    <Seccion id="informacion">
+      <TituloSeccion>¿Cómo obtuvimos la información?</TituloSeccion>
+      <div class="grilla">
+        <TarjetaCinta giro="izquierda">
+          <ListaIconos
+            items={[
+              { icono: 'clipboard-list', texto: 'Se realizó una encuesta en línea a estudiantes del INTEC.' },
+              { icono: 'users', texto: 'Participaron 46 estudiantes de diferentes carreras.' },
+              { icono: 'trending-up', texto: 'Los resultados muestran conocimientos, prácticas y expectativas.' },
+            ]}
+          />
+        </TarjetaCinta>
+        <TarjetaCinta cinta="lados">
+          <p>Los dispositivos electrónicos forman parte de nuestra vida universitaria. Cuando dejan de funcionar, muchas veces no sabemos qué hacer con ellos.</p>
+        </TarjetaCinta>
+        <TarjetaCinta papel="salvia" cinta="esquinas" giro="derecha">
+          <p>Esto genera impactos ambientales y representa una pérdida de recursos.</p>
+        </TarjetaCinta>
+      </div>
+    </Seccion>
+
+    <Seccion id="datos">
+      <TituloSeccion>Datos de la encuesta</TituloSeccion>
+      <div class="grilla">
+        <BloqueDato valor={76.1} frase="guarda los aparatos que ya no usa." giro="izquierda" />
+        <BloqueDato valor={80.4} frase="no sabe dónde llevar un residuo electrónico." />
+        <BloqueDato
+          valor={91.3}
+          frase="calificó entre 4 y 5 la utilidad de un instructivo."
+          detalle="Encuesta en línea a 46 estudiantes."
+          giro="derecha"
+        />
+      </div>
+    </Seccion>
+
+    <Seccion id="guia">
+      <TituloSeccion>¿Va al Ecopunto?</TituloSeccion>
+      <div class="grilla">
+        <TarjetaCinta giro="derecha">
+          <div class="etiquetas">
+            <EtiquetaSiNo tipo="si" texto="Sí puedes depositar" />
+            <p>Cargadores, cables, audífonos y otros pequeños aparatos.</p>
+            <EtiquetaSiNo tipo="no" texto="No depositar" />
+            <p>Restos de comida, botellas y basura común.</p>
+          </div>
+        </TarjetaCinta>
+        <ImagenMarco src={reciclar} alt="Símbolo de reciclaje en verde." giro="izquierda" cinta="esquinas" />
+      </div>
+    </Seccion>
   </main>
 </Base>
 
 <style>
-  section {
-    min-height: 100vh;
-    padding: 2rem 1rem;
+  .marca {
+    font-size: var(--titulo-portada);
+    overflow-wrap: anywhere;
+  }
+  .lema {
+    margin-top: var(--espacio-3);
+    font-size: var(--texto-base);
+    font-weight: 700;
+  }
+  .nota {
+    margin-top: var(--espacio-2);
+    font-size: var(--texto-chico);
+    color: var(--color-tinta-suave);
+  }
+  .etiquetas {
     display: grid;
-    place-content: center;
-    text-align: center;
+    gap: var(--espacio-3);
+    justify-items: start;
   }
 </style>

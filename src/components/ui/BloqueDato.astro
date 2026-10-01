@@ -1,0 +1,47 @@
+---
+// Dato de la encuesta: cifra grande, frase y detalle, sobre papel salvia (spec 0002).
+// `data-valor` queda en la cifra para los contadores de la parte #10.
+import TarjetaCinta from './TarjetaCinta.astro';
+
+interface Props {
+  valor: number;
+  frase: string;
+  detalle?: string;
+  animar?: boolean;
+  giro?: 'izquierda' | 'recto' | 'derecha';
+}
+
+const { valor, frase, detalle, animar = true, giro = 'recto' } = Astro.props;
+const ESPACIO_FIJO = ' ';
+const cifra = `${valor.toFixed(1)}${ESPACIO_FIJO}%`;
+---
+
+<TarjetaCinta papel="salvia" cinta="lados" giro={giro} animar={animar} class="bloque-dato">
+  <p class="cifra" data-valor={valor}>{cifra}</p>
+  <p class="frase">{frase}</p>
+  {detalle && <p class="detalle">{detalle}</p>}
+</TarjetaCinta>
+
+<style>
+  :global(.bloque-dato) {
+    display: grid;
+    gap: var(--espacio-2);
+    text-align: center;
+    padding-inline: var(--espacio-5);
+  }
+  .cifra {
+    font-family: var(--font-titulo);
+    font-weight: 900;
+    font-size: var(--dato-cifra);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .frase {
+    font-size: var(--texto-base);
+    font-weight: 700;
+  }
+  .detalle {
+    font-size: var(--texto-chico);
+    color: var(--color-tinta-suave);
+  }
+</style>

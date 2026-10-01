@@ -1,0 +1,35 @@
+---
+// Lista con ícono de trazo y texto (spec 0002). Va siempre dentro de una TarjetaCinta.
+import Icono, { type NombreIcono } from './Icono.astro';
+
+interface Props {
+  items: { icono: NombreIcono; texto: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="lista">
+  {items.map((item) => (
+    <li>
+      <Icono nombre={item.icono} tamano="2rem" />
+      <span>{item.texto}</span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--espacio-3);
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-3);
+    color: var(--color-tinta);
+  }
+</style>

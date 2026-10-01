@@ -1,14 +1,103 @@
-/* Contrato de animación (spec 0001): solo se esconde lo animable
+/* Contrato de animación (spec 0001, ampliado en 0002): solo se esconde lo animable
    cuando hay JS y el visitante no pidió menos movimiento. */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
-  .js [data-animar] { visibility: hidden; }
+  .js [data-animar],
+  .js [data-entrada] { visibility: hidden; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
+html {
+  background: var(--color-carton);
+  color: var(--color-tinta);
+}
+
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
+  background: transparent;
+  font-family: var(--font-texto);
+  font-size: var(--texto-base);
+  line-height: var(--interlineado-texto);
+  color: var(--color-tinta);
+}
+
+main { overflow-x: clip; }
+
+h1, h2, h3 {
+  font-family: var(--font-titulo);
+  font-weight: 900;
+  line-height: var(--interlineado-titulo);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+:focus-visible {
+  outline: var(--foco-grosor) solid var(--color-tinta);
+  outline-offset: var(--foco-separacion);
+}
+
+/* Capa de cartón (spec 0002). Va detrás de todo; el parallax la mueve en pantallas anchas. */
+.fondo-carton {
+  position: fixed;
+  inset: -15vh 0;
+  z-index: -1;
+  background-color: var(--color-carton);
+  background-image: url('../assets/texturas/carton.webp');
+  background-repeat: repeat;
+  background-size: 512px;
+  pointer-events: none;
+}
+/* En bloque aparte: el minificador borra la línea WebP de respaldo si van en la misma regla. */
+@supports (background-image: image-set(url('x.avif') type('image/avif'))) {
+  .fondo-carton {
+    background-image: image-set(
+      url('../assets/texturas/carton.avif') type('image/avif'),
+      url('../assets/texturas/carton.webp') type('image/webp')
+    );
+  }
+}
+
+/* Papel: color, ruido sutil y sombra. Cada componente elige el color con --papel. */
+.papel {
+  position: relative;
+  background-color: var(--papel, var(--color-papel));
+  background-image: var(--textura-papel);
+  box-shadow: var(--sombra-papel);
+}
+
+/* Cinta verde con extremos dentados. La posición y el ángulo los pone cada componente. */
+.cinta {
+  position: absolute;
+  z-index: 1;
+  width: var(--cinta-ancho);
+  height: var(--cinta-alto);
+  background-color: var(--color-cinta);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-blanco) 18%, transparent),
+    transparent 40%,
+    color-mix(in srgb, var(--color-tinta) 8%, transparent)
+  );
+  --dientes:
+    conic-gradient(from 45deg at left, transparent, black 1deg 89deg, transparent 90deg) left / 51% 8px repeat-y,
+    conic-gradient(from -135deg at right, transparent, black 1deg 89deg, transparent 90deg) right / 51% 8px repeat-y;
+  -webkit-mask: var(--dientes);
+  mask: var(--dientes);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Texto solo para lectores de pantalla */
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

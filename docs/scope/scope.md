@@ -45,13 +45,13 @@ Anotar las convenciones del proyecto a partir del proyecto real, en versión lig
 ### 3. Sistema visual y animación
 Traducir el estilo de Canva a la web: fondo de cartón reciclado, cinta verde, letra tipo marcador, verde Ecopunto, tarjetas tipo papel. Incluye las reglas de movimiento (cómo entran las secciones, duración, qué pasa si el usuario pidió menos movimiento en su celular). (basis: every page depends on the design system; accesibilidad de animaciones)
 **Done when:** `design.md` define colores, tipografías, texturas y reglas de animación; hay componentes base (tarjeta con cinta, título de sección, bloque de dato) que se ven bien en celular, y con movimiento reducido activado el contenido aparece sin animación.
-spec [0002](../specs/0002-sistema-visual-animacion/index.md) · code in _(pendiente)_
+spec [0002](../specs/0002-sistema-visual-animacion/index.md) · code in `src/components/ui/`, `src/styles/`, `src/scripts/`
 - [x] Design it (spec): `/architect sistema visual y animación`
-- [ ] Build it: `/develop sistema visual y animación`
-  - [ ] Tokens, fuentes y fondo de cartón (AC-2, AC-3, AC-4, AC-6)
-  - [ ] Íconos, siete componentes base y página de muestra (AC-5, AC-6, AC-11)
-  - [ ] Movimiento: entradas, tarjeta con cinta, título y parallax (AC-7, AC-8, AC-9, AC-10, AC-13)
-  - [ ] `design.md` y control de peso y contraste (AC-1, AC-6, AC-12)
+- [x] Build it: `/develop sistema visual y animación`
+  - [x] Tokens, fuentes y fondo de cartón (AC-2, AC-3, AC-4, AC-6)
+  - [x] Íconos, siete componentes base y página de muestra (AC-5, AC-6, AC-11)
+  - [x] Movimiento: entradas, tarjeta con cinta, título y parallax (AC-7, AC-8, AC-9, AC-10, AC-13)
+  - [x] `design.md` y control de peso y contraste (AC-1, AC-6, AC-12)
 - [ ] Verify it: `/check verify sistema visual y animación`
 
 ### 4. Contenido e imágenes de la campaña

@@ -1,17 +1,25 @@
-// Único punto que registra GSAP. Toda animación nueva vive dentro de
-// gsap.matchMedia() con (prefers-reduced-motion: no-preference).
+// Único punto que importa y registra GSAP (spec 0001). Los efectos (spec 0002) viven en ./efectos/
+// y solo corren sin movimiento reducido. El parallax va en su propio bloque para que cambiar
+// el ancho de la ventana no vuelva a esconder lo ya revelado.
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { entrada } from './efectos/entrada';
+import { parallax } from './efectos/parallax';
+import { subir } from './efectos/subir';
+import { tarjetas } from './efectos/tarjeta';
+import { titulos } from './efectos/titulo';
 
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-  gsap.set('[data-animar]', { autoAlpha: 0, y: 24 });
-  ScrollTrigger.batch('[data-animar]', {
-    start: 'top 85%',
-    once: true,
-    onEnter: (els) => gsap.to(els, { autoAlpha: 1, y: 0, stagger: 0.1, overwrite: true }),
-  });
+const mm = gsap.matchMedia();
+mm.add('(prefers-reduced-motion: no-preference)', (ctx) => {
+  entrada(gsap);
+  subir(gsap, ScrollTrigger, ctx);
+  tarjetas(gsap, ScrollTrigger, ctx);
+  titulos(gsap, ScrollTrigger, ctx);
+});
+mm.add('(prefers-reduced-motion: no-preference) and (min-width: 1024px) and (pointer: fine)', () => {
+  parallax(gsap);
 });
 document.documentElement.classList.add('anim-listo');
 

@@ -1,4 +1,7 @@
 ---
+import '@fontsource/londrina-solid/latin-900.css';
+import '@fontsource-variable/nunito/wght.css';
+import londrinaUrl from '@fontsource/londrina-solid/files/londrina-solid-latin-900-normal.woff2?url';
 import '../styles/tokens.css';
 import '../styles/global.css';
 
@@ -28,11 +31,13 @@ const canonica = Astro.site ? new URL('/', Astro.site).href.replace(/\/$/, '') :
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
     {canonica && <link rel="canonical" href={canonica} />}
+    <link rel="preload" href={londrinaUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <div class="fondo-carton" data-parallax aria-hidden="true"></div>
     <slot />
     <script>
       import '../scripts/animaciones.ts';

@@ -1,0 +1,78 @@
+---
+// Tarjeta de papel sujeta con cinta (spec 0002).
+// El giro de reposo va en la propiedad CSS `rotate`; la entrada animada termina en ese mismo giro.
+interface Props {
+  papel?: 'crema' | 'salvia';
+  cinta?: 'arriba' | 'esquinas' | 'lados' | 'ninguna';
+  giro?: 'izquierda' | 'recto' | 'derecha';
+  as?: 'div' | 'article' | 'li';
+  animar?: boolean;
+  class?: string;
+}
+
+const {
+  papel = 'crema',
+  cinta = 'arriba',
+  giro = 'recto',
+  as: Tag = 'div',
+  animar = true,
+  class: clase,
+} = Astro.props;
+
+const cintas: string[] =
+  cinta === 'arriba' ? ['arriba'] :
+  cinta === 'esquinas' ? ['esquina-inicio', 'esquina-fin'] :
+  cinta === 'lados' ? ['lado-inicio', 'lado-fin'] :
+  [];
+---
+
+<Tag
+  class:list={['tarjeta', 'papel', `papel-${papel}`, `giro-${giro}`, clase]}
+  data-giro={giro}
+  data-animar={animar ? 'tarjeta' : undefined}
+>
+  {cintas.map((pos) => <span class:list={['cinta', `cinta-${pos}`]} aria-hidden="true" />)}
+  <slot />
+</Tag>
+
+<style>
+  .tarjeta {
+    display: block;
+    padding: var(--relleno-papel);
+    color: var(--color-tinta);
+  }
+  .papel-crema { --papel: var(--color-papel); }
+  .papel-salvia { --papel: var(--color-salvia); }
+
+  .giro-izquierda { rotate: var(--giro-izquierda); }
+  .giro-derecha { rotate: var(--giro-derecha); }
+
+  .cinta-arriba {
+    top: -0.8rem;
+    left: calc(50% - var(--cinta-ancho) / 2);
+    rotate: 3deg;
+  }
+  .cinta-esquina-inicio {
+    top: -0.4rem;
+    left: -1rem;
+    rotate: -35deg;
+  }
+  .cinta-esquina-fin {
+    bottom: -0.4rem;
+    right: -1rem;
+    rotate: -35deg;
+    transform-origin: right center;
+  }
+  /* A los lados: la cinta gira 90° sobre su extremo, centrada a media altura en el borde. */
+  .cinta-lado-inicio {
+    left: 0;
+    top: calc(50% - var(--cinta-alto) / 2 - var(--cinta-ancho) / 2);
+    rotate: 90deg;
+  }
+  .cinta-lado-fin {
+    right: 0;
+    top: calc(50% - var(--cinta-alto) / 2 + var(--cinta-ancho) / 2);
+    rotate: 90deg;
+    transform-origin: right center;
+  }
+</style>

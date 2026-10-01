@@ -1,0 +1,41 @@
+---
+// Sección centrada sobre el cartón (spec 0002). Con ancho "amplio", el contenido
+// dentro de un elemento .grilla va en 1, 2 o 3 columnas según el ancho de pantalla.
+interface Props {
+  id: string;
+  ancho?: 'texto' | 'amplio';
+  class?: string;
+}
+
+const { id, ancho = 'amplio', class: clase } = Astro.props;
+---
+
+<section id={id} class:list={['seccion', `seccion-${ancho}`, clase]}>
+  <slot />
+</section>
+
+<style>
+  .seccion {
+    width: 100%;
+    margin-inline: auto;
+    padding-block: var(--espacio-seccion);
+    padding-inline: var(--margen-lateral);
+    display: grid;
+    gap: var(--espacio-5);
+  }
+  .seccion-texto { max-width: calc(var(--ancho-texto) + 2 * var(--margen-lateral)); }
+  .seccion-amplio { max-width: calc(var(--ancho-seccion) + 2 * var(--margen-lateral)); }
+
+  .seccion-amplio :global(.grilla) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacio-5);
+    align-items: start;
+  }
+  @media (min-width: 768px) {
+    .seccion-amplio :global(.grilla) { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .seccion-amplio :global(.grilla) { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
