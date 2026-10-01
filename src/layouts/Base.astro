@@ -14,6 +14,9 @@ interface Props {
 const { titulo, descripcion } = Astro.props;
 // Canonical sin parámetros: ?src=qr no se copia al compartir.
 const canonica = Astro.site ? new URL('/', Astro.site).href.replace(/\/$/, '') : undefined;
+// Vista previa al compartir (parte #9): imagen sacada de la portada ilustrada (spec 0003).
+const imagenCompartir = Astro.site ? new URL('/og.png', Astro.site).href : undefined;
+const ALT_COMPARTIR = 'Ecopunto INTEC: un cargador con cara feliz enchufado a un celular, con el lema "Pequeños aparatos, grandes cambios".';
 ---
 
 <!doctype html>
@@ -32,6 +35,19 @@ const canonica = Astro.site ? new URL('/', Astro.site).href.replace(/\/$/, '') :
     <title>{titulo}</title>
     <meta name="description" content={descripcion} />
     {canonica && <link rel="canonical" href={canonica} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_DO" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    {canonica && <meta property="og:url" content={canonica} />}
+    {imagenCompartir && <meta property="og:image" content={imagenCompartir} />}
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ALT_COMPARTIR} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titulo} />
+    <meta name="twitter:description" content={descripcion} />
+    {imagenCompartir && <meta name="twitter:image" content={imagenCompartir} />}
     <link rel="preload" href={londrinaUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
