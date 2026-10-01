@@ -1,0 +1,37 @@
+---
+// Contenedor del Ecopunto (spec 0003): verde y blanco, "Ecopunto INTEC" y símbolo de reciclaje,
+// como el de la diapositiva 16. Caja local de 170 × 240. Lo de adentro va en el slot "dentro".
+// Partes animables: atras, boca, frente.
+interface Props {
+  x?: number;
+  y?: number;
+  escala?: number;
+}
+
+const { x = 0, y = 0, escala = 1 } = Astro.props;
+---
+
+<g data-parte="contenedor" transform={`translate(${x} ${y}) scale(${escala})`}>
+  <g data-parte="atras">
+    <rect class="ilu-noche" x="40" y="0" width="90" height="40" rx="4" />
+  </g>
+  <slot name="dentro" />
+  <g data-parte="frente">
+    <rect class="ilu-blanco ilu-trazo" x="8" y="22" width="154" height="214" rx="10" />
+    <rect class="ilu-verde" x="10" y="24" width="150" height="34" rx="8" />
+    <rect data-parte="boca" class="ilu-noche ilu-trazo" x="45" y="32" width="80" height="12" rx="6" />
+    <text class="ilu-texto ilu-tinta" x="85" y="88" text-anchor="middle" font-size="24">Ecopunto</text>
+    <text class="ilu-texto ilu-verde" x="85" y="112" text-anchor="middle" font-size="22">INTEC</text>
+    <g transform="translate(55 122) scale(2.5)">
+      <path class="ilu-trazo-verde" d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" />
+      <path class="ilu-trazo-verde" d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" />
+      <path class="ilu-trazo-verde" d="m14 16-3 3 3 3" />
+      <path class="ilu-trazo-verde" d="M8.293 13.596 7.196 9.5 3.1 10.598" />
+      <path class="ilu-trazo-verde" d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843" />
+      <path class="ilu-trazo-verde" d="m13.378 9.633 4.096 1.098 1.097-4.096" />
+    </g>
+    <rect class="ilu-verde" x="10" y="200" width="150" height="34" rx="8" />
+    <rect class="ilu-tinta" x="20" y="236" width="26" height="8" rx="3" />
+    <rect class="ilu-tinta" x="124" y="236" width="26" height="8" rx="3" />
+  </g>
+</g>

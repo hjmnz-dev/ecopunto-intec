@@ -1,0 +1,33 @@
+---
+// Celular que se carga y se apaga (spec 0003). Caja local de 70 × 130.
+// Partes animables: pantalla, pantalla-apagada, bateria-nivel.
+interface Props {
+  pose: 'cargando' | 'apagado';
+  x?: number;
+  y?: number;
+  escala?: number;
+}
+
+const { pose, x = 0, y = 0, escala = 1 } = Astro.props;
+const encendido = pose === 'cargando';
+---
+
+<g data-parte="celular" transform={`translate(${x} ${y}) scale(${escala})`}>
+  <rect class="ilu-tinta ilu-trazo" x="0" y="0" width="70" height="130" rx="12" />
+  <rect data-parte="pantalla" class="ilu-cuaderno" x="7" y="12" width="56" height="100" rx="4" opacity={encendido ? 1 : 0} />
+  <rect data-parte="pantalla-apagada" class="ilu-noche" x="7" y="12" width="56" height="100" rx="4" opacity={encendido ? 0 : 1} />
+  <rect class="ilu-trazo ilu-linea" x="20" y="50" width="30" height="16" rx="3" />
+  <rect class="ilu-tinta" x="50" y="55" width="3" height="6" rx="1" />
+  <rect
+    data-parte="bateria-nivel"
+    class="ilu-verde"
+    x="23"
+    y="53"
+    width="24"
+    height="10"
+    rx="1.5"
+    transform={encendido ? undefined : 'scale(0 1)'}
+    style="transform-box: fill-box; transform-origin: left center;"
+  />
+  <rect class="ilu-gris" x="27" y="118" width="16" height="4" rx="2" />
+</g>

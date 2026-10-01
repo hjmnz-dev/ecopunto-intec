@@ -1,7 +1,7 @@
 # 0003. La página como historia al hacer scroll: la vida de un cargador
 
 **Date**: 2026-09-30
-**Status**: Proposed
+**Status**: In Progress
 
 ## Summary
 

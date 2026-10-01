@@ -1,0 +1,81 @@
+---
+// Escena de la historia (spec 0003). El HTML es el modo estático: sección normal con el dibujo en su
+// pose final y todos los momentos apilados. El modo fijo lo activa el JS con la clase `escena-fija`
+// (pista alta con escenario sticky y momentos superpuestos en la misma celda).
+import type { IdEscena } from '../../data/campana';
+
+interface Props {
+  id: IdEscena;
+  tono?: 'carton' | 'noche';
+  etiqueta: string;
+}
+
+const { id, tono = 'carton', etiqueta } = Astro.props;
+---
+
+<section class:list={['escena', `escena-${tono}`]} id={`escena-${id}`} data-escena={id} aria-labelledby={etiqueta}>
+  {tono === 'noche' && <div class="noche" data-noche aria-hidden="true" />}
+  <div class="escenario">
+    <div class="dibujo"><slot name="dibujo" /></div>
+    <div class="momentos"><slot /></div>
+  </div>
+</section>
+
+<style>
+  .escena {
+    position: relative;
+    padding: var(--espacio-5) var(--margen-lateral);
+  }
+  .noche {
+    position: absolute;
+    inset: 0;
+    background: var(--color-noche);
+  }
+  .escenario {
+    position: relative;
+    max-width: var(--ancho-seccion);
+    margin-inline: auto;
+    display: grid;
+    gap: var(--espacio-4);
+    align-items: center;
+  }
+  .dibujo {
+    height: clamp(12rem, 45vw, 20rem);
+    width: 100%;
+  }
+  .momentos {
+    display: grid;
+    gap: var(--espacio-5);
+  }
+  @media (min-width: 1024px) {
+    .escenario { grid-template-columns: 1fr 1fr; }
+    .dibujo { height: 22rem; }
+  }
+
+  /* Modo fijo: solo con la clase que pone el JS */
+  .escena.escena-fija {
+    height: calc(100vh + var(--largo, 120vh));
+    height: calc(100svh + var(--largo, 120svh));
+    padding: 0;
+  }
+  .escena-fija .escenario {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    max-width: none;
+    padding: var(--espacio-4) var(--margen-lateral);
+    align-content: center;
+    overflow: hidden;
+  }
+  .escena-fija .dibujo { height: min(32svh, 16rem); }
+  .escena-fija .momentos { grid-template-areas: 'momento'; }
+  .escena-fija .momentos > :global(*) { grid-area: momento; }
+  @media (min-width: 1024px) {
+    .escena-fija .escenario {
+      max-width: calc(var(--ancho-seccion) + 2 * var(--margen-lateral));
+      margin-inline: auto;
+    }
+    .escena-fija .dibujo { height: min(60svh, 24rem); }
+  }
+</style>

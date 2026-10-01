@@ -1,7 +1,12 @@
 ---
 // Ícono de trazo de Lucide (licencia ISC, ver src/icons/LICENSE-lucide.txt).
 // Para sumar uno: copia su SVG a src/icons/ y agrega el nombre a NombreIcono.
-export type NombreIcono = 'check' | 'x' | 'clipboard-list' | 'users' | 'trending-up' | 'recycle';
+export type NombreIcono =
+  | 'check' | 'x' | 'clipboard-list' | 'users' | 'trending-up' | 'recycle'
+  // Guía (spec 0003): sí, no y pasos
+  | 'plug-zap' | 'cable' | 'mouse' | 'keyboard' | 'headphones' | 'calculator' | 'usb' | 'cpu'
+  | 'apple' | 'cup-soda' | 'milk' | 'scroll-text' | 'leaf' | 'droplets' | 'trash-2'
+  | 'search' | 'shuffle' | 'smartphone';
 
 interface Props {
   nombre: NombreIcono;

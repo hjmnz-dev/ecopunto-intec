@@ -1,7 +1,7 @@
 /* Contrato de animación (spec 0001, ampliado en 0002): solo se esconde lo animable
-   cuando hay JS y el visitante no pidió menos movimiento. */
+   cuando hay JS y el visitante no pidió menos movimiento. Sin scroll suave: choca con
+   ScrollTrigger y con los saltos por ancla de la historia (spec 0003). */
 @media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
   .js [data-animar],
   .js [data-entrada] { visibility: hidden; }
 }

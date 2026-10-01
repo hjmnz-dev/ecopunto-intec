@@ -1,0 +1,52 @@
+---
+// El protagonista de la historia (spec 0003). Caja local de 100 × 150.
+// Partes animables: cuerpo, enchufe, cable, cable-roto, chispa, cara-feliz, cara-triste.
+export type PoseCargador = 'enchufado' | 'roto' | 'guardado' | 'basura' | 'perdido' | 'reciclado';
+
+interface Props {
+  pose: PoseCargador;
+  x?: number;
+  y?: number;
+  escala?: number;
+  giro?: number;
+}
+
+const { pose, x = 0, y = 0, escala = 1, giro = 0 } = Astro.props;
+const sano = pose === 'enchufado';
+const chispa = pose === 'roto';
+const feliz = pose === 'enchufado' || pose === 'reciclado';
+---
+
+<g data-parte="cargador" transform={`translate(${x} ${y}) rotate(${giro} 50 40) scale(${escala})`}>
+  <g data-parte="enchufe">
+    <rect class="ilu-tinta" x="30" y="0" width="9" height="20" rx="3" />
+    <rect class="ilu-tinta" x="61" y="0" width="9" height="20" rx="3" />
+  </g>
+  <g data-parte="cable" opacity={sano ? 1 : 0}>
+    <path class="ilu-trazo ilu-linea" d="M50 78 C50 112 92 108 92 142" />
+    <rect class="ilu-tinta" x="84" y="138" width="16" height="12" rx="3" />
+  </g>
+  <g data-parte="cable-roto" opacity={sano ? 0 : 1}>
+    <path class="ilu-trazo ilu-linea" d="M50 78 C50 96 60 104 68 106" />
+    <path class="ilu-trazo ilu-linea" d="M68 106 l4 -5 M68 106 l5 3 M68 106 l2 6" />
+    <path class="ilu-trazo ilu-linea" d="M80 116 C88 122 92 130 92 142" />
+    <rect class="ilu-tinta" x="84" y="138" width="16" height="12" rx="3" />
+  </g>
+  <g data-parte="cuerpo">
+    <rect class="ilu-blanco ilu-trazo" x="12" y="16" width="76" height="64" rx="14" />
+    <path class="ilu-verde" d="M53 26 L42 47 H51 L46 66 L60 42 H51 Z" opacity="0.9" />
+  </g>
+  <g data-parte="cara-feliz" opacity={feliz ? 1 : 0}>
+    <circle class="ilu-tinta" cx="30" cy="44" r="3.5" />
+    <circle class="ilu-tinta" cx="70" cy="44" r="3.5" />
+    <path class="ilu-trazo ilu-linea" d="M26 58 Q34 66 42 58" />
+  </g>
+  <g data-parte="cara-triste" opacity={feliz ? 0 : 1}>
+    <circle class="ilu-tinta" cx="30" cy="46" r="3.5" />
+    <circle class="ilu-tinta" cx="70" cy="46" r="3.5" />
+    <path class="ilu-trazo ilu-linea" d="M26 64 Q34 56 42 64" />
+  </g>
+  <g data-parte="chispa" opacity={chispa ? 1 : 0}>
+    <path class="ilu-chispa ilu-trazo" d="M74 100 l6 -14 l2 12 l12 -4 l-8 10 l12 6 l-14 0 l2 12 l-8 -10 l-8 8 l2 -12 l-10 -4 Z" />
+  </g>
+</g>

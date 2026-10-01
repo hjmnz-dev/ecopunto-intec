@@ -1,0 +1,26 @@
+---
+// Basurero de basura común (spec 0003). Caja local de 140 × 170. Lo de adentro va en el slot
+// "dentro". Partes animables: atras, tapa, frente.
+interface Props {
+  x?: number;
+  y?: number;
+  escala?: number;
+}
+
+const { x = 0, y = 0, escala = 1 } = Astro.props;
+---
+
+<g data-parte="basurero" transform={`translate(${x} ${y}) scale(${escala})`}>
+  <g data-parte="tapa">
+    <path class="ilu-gris ilu-trazo" d="M-6 28 L52 -6 L58 4 L0 38 Z" />
+    <rect class="ilu-tinta" x="18" y="10" width="18" height="6" rx="3" transform="rotate(-30 27 13)" />
+  </g>
+  <g data-parte="atras">
+    <ellipse class="ilu-noche ilu-trazo" cx="70" cy="46" rx="62" ry="12" />
+  </g>
+  <slot name="dentro" />
+  <g data-parte="frente">
+    <path class="ilu-gris ilu-trazo" d="M8 46 Q70 62 132 46 L118 166 Q70 174 22 166 Z" />
+    <path class="ilu-trazo ilu-linea" d="M48 80 L52 150 M70 82 L70 154 M92 80 L88 150" />
+  </g>
+</g>

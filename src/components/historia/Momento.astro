@@ -1,0 +1,56 @@
+---
+// Un momento de una escena (spec 0003): título, dato opcional (cifra, frase y puntos) y texto,
+// sobre papel crema. No lleva data-animar: lo anima su escena.
+import TarjetaCinta from '../ui/TarjetaCinta.astro';
+import Cifra from './Cifra.astro';
+import Puntos46 from './Puntos46.astro';
+import { personas } from './formato';
+import type { Momento as DatosMomento } from '../../data/campana';
+import { campana } from '../../data/campana';
+
+interface Props {
+  momento: DatosMomento;
+  indice: number;
+  id?: string;
+  giro?: 'izquierda' | 'recto' | 'derecha';
+}
+
+const { momento, indice, id, giro = 'recto' } = Astro.props;
+const Encabezado = indice === 0 ? 'h2' : 'h3';
+const total = campana.encuesta.participantes;
+---
+
+<div class="momento" data-momento={indice}>
+  <TarjetaCinta animar={false} giro={giro} cinta={indice === 0 ? 'arriba' : 'esquinas'}>
+    <Encabezado id={id} class="titulo-momento">{momento.titulo}</Encabezado>
+    {momento.dato && (
+      <div class="dato" data-dato>
+        <Cifra valor={momento.dato.valor} />
+        <p class="frase">{momento.dato.frase}</p>
+        <Puntos46 total={total} marcados={personas(momento.dato.valor, total)} />
+        <p class="leyenda">Cada punto es una de las {total} personas encuestadas.</p>
+      </div>
+    )}
+    {momento.texto && <p class="texto" data-texto>{momento.texto}</p>}
+  </TarjetaCinta>
+</div>
+
+<style>
+  .momento { min-width: 0; }
+  .titulo-momento {
+    font-size: var(--titulo-historia);
+    text-transform: none;
+    margin-bottom: var(--espacio-3);
+  }
+  .dato {
+    display: grid;
+    gap: var(--espacio-2);
+    margin-bottom: var(--espacio-3);
+  }
+  .frase { font-weight: 700; }
+  .leyenda {
+    font-size: var(--texto-chico);
+    color: var(--color-tinta-suave);
+  }
+  .texto:last-child { margin-bottom: 0; }
+</style>

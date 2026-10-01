@@ -15,6 +15,10 @@
   --color-no: #ba5b5e;
   --color-blanco: #ffffff;
   --color-portada: #f5f5f2;
+  /* Historia (spec 0003). Verde solo para cifras de 24 px o más, puntos y formas; nunca sobre salvia. */
+  --color-noche: #241c15;
+  --color-verde: #2f8f3a;
+  --color-chispa: #f2b705; /* solo formas (la chispa del cargador), nunca texto */
   --color-sombra: rgb(60 35 10 / 0.5);
   --color-sombra-corta: rgb(0 0 0 / 0.08);
 
@@ -27,6 +31,8 @@
   --titulo-seccion: clamp(2.25rem, 8vw, 3.75rem);
   --titulo-portada: clamp(3rem, 14vw, 6rem);
   --dato-cifra: clamp(3.5rem, 18vw, 6rem);
+  --cifra-escena: clamp(3rem, 14vw, 5.5rem);
+  --titulo-historia: clamp(1.6rem, 6.5vw, 2.6rem);
   --interlineado-texto: 1.5;
   --interlineado-titulo: 0.95;
 

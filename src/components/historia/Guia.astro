@@ -1,0 +1,93 @@
+---
+// Guía para actuar después de la historia (spec 0003): sí y no, los 4 pasos y cómo reconocer el
+// contenedor. Destino del enlace de salto (#guia, tabindex -1). Íconos en el orden de cada lista.
+import Seccion from '../ui/Seccion.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import TarjetaCinta from '../ui/TarjetaCinta.astro';
+import EtiquetaSiNo from '../ui/EtiquetaSiNo.astro';
+import ListaIconos from '../ui/ListaIconos.astro';
+import Icono, { type NombreIcono } from '../ui/Icono.astro';
+import Contenedor from '../ilustraciones/Contenedor.astro';
+import { campana } from '../../data/campana';
+
+const { guia, pasos } = campana;
+const iconosSi: NombreIcono[] = ['plug-zap', 'cable', 'mouse', 'keyboard', 'headphones', 'calculator', 'usb', 'cpu'];
+const iconosNo: NombreIcono[] = ['apple', 'cup-soda', 'milk', 'scroll-text', 'leaf', 'droplets', 'trash-2'];
+const iconosPasos: NombreIcono[] = ['search', 'shuffle', 'recycle', 'smartphone'];
+const conIconos = (puntos: readonly string[], iconos: NombreIcono[]) =>
+  puntos.map((texto, i) => ({ icono: iconos[i] ?? 'check', texto }));
+---
+
+<Seccion id="guia" tabindex={-1} class="guia">
+  <TituloSeccion>{guia.titulo}</TituloSeccion>
+  <div class="grilla columnas-2">
+    <TarjetaCinta giro="izquierda" as="article">
+      <EtiquetaSiNo tipo="si" texto={guia.si.titulo} />
+      <div class="lista"><ListaIconos items={conIconos(guia.si.puntos, iconosSi)} /></div>
+    </TarjetaCinta>
+    <TarjetaCinta giro="derecha" as="article">
+      <EtiquetaSiNo tipo="no" texto={guia.no.titulo} />
+      <div class="lista"><ListaIconos items={conIconos(guia.no.puntos, iconosNo)} /></div>
+    </TarjetaCinta>
+  </div>
+
+  <TituloSeccion nivel={3}>{pasos.titulo}</TituloSeccion>
+  <ol class="grilla pasos">
+    {pasos.puntos.map((paso, i) => (
+      <TarjetaCinta as="li" giro={i % 2 === 0 ? 'izquierda' : 'derecha'} cinta={i % 2 === 0 ? 'arriba' : 'esquinas'}>
+        <div class="paso">
+          <span class="numero" aria-hidden="true">{i + 1}</span>
+          <Icono nombre={iconosPasos[i] ?? 'check'} tamano="2.5rem" />
+        </div>
+        <p><span class="solo-lector">Paso {i + 1}: </span>{paso}</p>
+      </TarjetaCinta>
+    ))}
+  </ol>
+
+  <TituloSeccion nivel={3}>{guia.contenedor.titulo}</TituloSeccion>
+  <div class="grilla columnas-2 contenedor">
+    <TarjetaCinta cinta="lados" giro="izquierda">
+      <svg class="lienzo dibujo-contenedor" viewBox="-10 -10 190 270" aria-hidden="true">
+        <Contenedor />
+      </svg>
+    </TarjetaCinta>
+    <TarjetaCinta giro="derecha">
+      <ListaIconos items={guia.contenedor.puntos.map((texto) => ({ icono: 'check' as const, texto }))} />
+    </TarjetaCinta>
+  </div>
+</Seccion>
+
+<style>
+  .lista { margin-top: var(--espacio-4); }
+  .pasos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (min-width: 768px) {
+    :global(.seccion-amplio) .pasos { grid-template-columns: repeat(2, 1fr); }
+    :global(.seccion-amplio) .columnas-2 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    :global(.seccion-amplio) .pasos { grid-template-columns: repeat(4, 1fr); }
+  }
+  .paso {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-3);
+    margin-bottom: var(--espacio-3);
+    color: var(--color-verde);
+  }
+  .numero {
+    font-family: var(--font-titulo);
+    font-weight: 900;
+    font-size: var(--titulo-seccion);
+    line-height: 1;
+    color: var(--color-tinta);
+  }
+  .dibujo-contenedor {
+    height: 16rem;
+    margin-inline: auto;
+  }
+  .contenedor { align-items: center; }
+</style>

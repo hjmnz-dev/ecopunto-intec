@@ -1,0 +1,35 @@
+---
+// Cifra grande de una escena (spec 0003). El lector de pantalla lee el valor final una sola vez;
+// la cifra visible es aria-hidden y una capa invisible reserva su ancho para que no tiemble al contar.
+import { formatoCifra } from './formato';
+
+interface Props {
+  valor: number;
+}
+
+const { valor } = Astro.props;
+const texto = formatoCifra(valor);
+---
+
+<p class="cifra">
+  <span class="solo-lector">{texto}</span>
+  <span class="caja" aria-hidden="true">
+    <span class="reserva">{texto}</span>
+    <span class="valor" data-cifra={valor}>{texto}</span>
+  </span>
+</p>
+
+<style>
+  .cifra {
+    margin: 0;
+    font-family: var(--font-titulo);
+    font-weight: 900;
+    font-size: var(--cifra-escena);
+    line-height: 1;
+    color: var(--color-verde);
+  }
+  .caja { display: inline-grid; }
+  .reserva,
+  .valor { grid-area: 1 / 1; }
+  .reserva { visibility: hidden; }
+</style>

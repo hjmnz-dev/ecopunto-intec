@@ -1,0 +1,22 @@
+---
+// Cajón abierto (spec 0003). Caja local de 180 × 120. Lo de adentro va en el slot "dentro",
+// entre la capa de atrás y el frente. Partes animables: atras, frente.
+interface Props {
+  x?: number;
+  y?: number;
+  escala?: number;
+}
+
+const { x = 0, y = 0, escala = 1 } = Astro.props;
+---
+
+<g data-parte="cajon" transform={`translate(${x} ${y}) scale(${escala})`}>
+  <g data-parte="atras">
+    <path class="ilu-oscuro ilu-trazo" d="M18 30 L162 30 L176 58 L4 58 Z" />
+  </g>
+  <slot name="dentro" />
+  <g data-parte="frente">
+    <rect class="ilu-salvia ilu-trazo" x="4" y="56" width="172" height="62" rx="6" />
+    <rect class="ilu-papel ilu-trazo" x="66" y="78" width="48" height="12" rx="6" />
+  </g>
+</g>

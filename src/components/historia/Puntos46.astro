@@ -1,0 +1,38 @@
+---
+// Grilla de participantes (spec 0003): un punto por persona, los primeros `marcados` en verde.
+// Va siempre sobre papel crema. Solo los rellenos marcados llevan data-punto (los anima la escena).
+interface Props {
+  total: number;
+  marcados: number;
+}
+
+const { total, marcados } = Astro.props;
+const puntos = Array.from({ length: total }, (_, i) => i < marcados);
+---
+
+<div class="puntos" aria-hidden="true">
+  {puntos.map((marcado) => (
+    <span class="punto">{marcado && <span class="relleno" data-punto />}</span>
+  ))}
+</div>
+
+<style>
+  .puntos {
+    display: grid;
+    grid-template-columns: repeat(23, 1fr);
+    gap: 3px;
+    max-width: 23rem;
+  }
+  .punto {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid var(--color-tinta);
+  }
+  .relleno {
+    position: absolute;
+    inset: 1px;
+    border-radius: 50%;
+    background: var(--color-verde);
+  }
+</style>

@@ -5,12 +5,14 @@ interface Props {
   id: string;
   ancho?: 'texto' | 'amplio';
   class?: string;
+  /** -1 para que un enlace de salto pueda dejar el foco aquí. */
+  tabindex?: number;
 }
 
-const { id, ancho = 'amplio', class: clase } = Astro.props;
+const { id, ancho = 'amplio', class: clase, tabindex } = Astro.props;
 ---
 
-<section id={id} class:list={['seccion', `seccion-${ancho}`, clase]}>
+<section id={id} class:list={['seccion', `seccion-${ancho}`, clase]} tabindex={tabindex}>
   <slot />
 </section>
 
