@@ -25,7 +25,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 9 | Publicación en línea y código QR | Release 1 | done |
 | 10 | Contadores y gráficos animados | Release 2 | dropped (cubierta por #14) |
 | 11 | Juego "¿Va al Ecopunto?" | Release 3 | done |
-| 12 | Mini quiz final | Release 4 | planned |
+| 12 | Mini quiz final | Release 4 | done |
 | 13 | Contador de visitas | Release 5 | planned |
 
 ## Foundations
@@ -129,7 +129,8 @@ spec [0004](../specs/0004-juego-va-ecopunto/index.md) · code in `src/components
 ### 12. Mini quiz final
 De 3 a 5 preguntas rápidas sacadas de la guía y los datos, con resultado al final y un mensaje que invita a usar el Ecopunto. Reutiliza el estilo de respuesta del juego.
 **Done when:** el estudiante responde de 3 a 5 preguntas, ve si acertó en cada una y recibe un resultado final con un mensaje de cierre.
-- [ ] Build it: `/develop mini quiz final`
+code in `src/components/historia/Quiz.astro`, `src/scripts/quiz.ts`, `src/styles/interactivos.css` · 4 preguntas en `campana.quiz` (textos nuevos, para revisar)
+- [x] Build it: `/develop mini quiz final`
 
 ## Release 5: Medir el impacto
 
