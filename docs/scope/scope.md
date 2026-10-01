@@ -15,7 +15,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 |---|---------|-------|--------|
 | 1 | Stack y publicación | Foundation | done |
 | 2 | Estándares y herramientas | Foundation | planned |
-| 3 | Sistema visual y animación | Foundation | in-progress |
+| 3 | Sistema visual y animación | Foundation | done |
 | 4 | Contenido e imágenes de la campaña | Foundation | planned |
 | 5 | Portada y el problema | Release 1 | planned |
 | 6 | Guía del Ecopunto | Release 1 | planned |
@@ -52,7 +52,7 @@ spec [0002](../specs/0002-sistema-visual-animacion/index.md) · code in `src/com
   - [x] Íconos, siete componentes base y página de muestra (AC-5, AC-6, AC-11)
   - [x] Movimiento: entradas, tarjeta con cinta, título y parallax (AC-7, AC-8, AC-9, AC-10, AC-13)
   - [x] `design.md` y control de peso y contraste (AC-1, AC-6, AC-12)
-- [ ] Verify it: `/check verify sistema visual y animación`
+- [x] Verify it: `/check verify sistema visual y animación`
 
 ### 4. Contenido e imágenes de la campaña
 Exportar de Canva las imágenes (logo Ecopunto INTEC, contenedor, objetos como cargador, cable, audífonos, botella) y pasar los textos de las diapositivas a un solo lugar en el proyecto, para que las secciones solo tengan que leerlos.

@@ -1,7 +1,7 @@
 # 0002. Sistema visual y animación: collage de cartón fiel al Canva
 
 **Date**: 2026-09-30
-**Status**: In Progress
+**Status**: Accepted
 
 ## Summary
 
