@@ -1,0 +1,100 @@
+---
+// Mini quiz final (parte #12): una pregunta a la vez con tres opciones, respuesta con el porqué
+// y resultado con mensaje de cierre. Reutiliza los estilos del juego (src/styles/interactivos.css).
+// Sin JS se ve solo el aviso; src/scripts/quiz.ts maneja el estado en memoria.
+import Seccion from '../ui/Seccion.astro';
+import TituloSeccion from '../ui/TituloSeccion.astro';
+import TarjetaCinta from '../ui/TarjetaCinta.astro';
+import Icono from '../ui/Icono.astro';
+import { campana } from '../../data/campana';
+
+const { quiz } = campana;
+---
+
+<Seccion id="quiz" ancho="texto">
+  <TituloSeccion>{quiz.titulo}</TituloSeccion>
+  <TarjetaCinta giro="derecha">
+    <p>{quiz.intro}</p>
+    <p class="sin-js" data-quiz-sin-js>
+      {quiz.sinJs}
+    </p>
+  </TarjetaCinta>
+
+  <div class="quiz" data-quiz hidden>
+    <TarjetaCinta animar={false} cinta="lados">
+      <div class="pregunta" data-quiz-pregunta>
+        <p class="progreso" data-quiz-progreso></p>
+        {quiz.preguntas.map((p, i) => (
+          <div class="bloque" data-quiz-bloque={i} hidden>
+            <h3 class="enunciado" tabindex="-1">
+              {p.pregunta}
+            </h3>
+            <ul class="opciones">
+              {p.opciones.map((opcion, j) => (
+                <li>
+                  <button type="button" class="boton boton-opcion" data-quiz-opcion={j}>
+                    <span>{opcion}</span>
+                    <span class="marca-opcion marca-bien" aria-hidden="true">
+                      <Icono nombre="check" tamano="1.5rem" />
+                    </span>
+                    <span class="marca-opcion marca-mal" aria-hidden="true">
+                      <Icono nombre="x" tamano="1.5rem" />
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <div class="respuesta" data-quiz-respuesta>
+          <span class="marca marca-bien" aria-hidden="true">
+            <Icono nombre="check" tamano="2rem" />
+          </span>
+          <span class="marca marca-mal" aria-hidden="true">
+            <Icono nombre="x" tamano="2rem" />
+          </span>
+          <p class="estado" aria-live="polite" data-quiz-estado></p>
+        </div>
+        <button type="button" class="boton boton-siguiente" data-quiz-siguiente hidden>
+          {quiz.botones.siguiente}
+        </button>
+      </div>
+      <div class="final" data-quiz-final hidden>
+        <h3 class="resultado" tabindex="-1" data-quiz-resultado></h3>
+        <p class="mensaje" data-quiz-mensaje></p>
+        <p class="cierre">{quiz.cierre}</p>
+        <button type="button" class="boton boton-siguiente" data-quiz-otra>
+          {quiz.botones.otraVez}
+        </button>
+      </div>
+    </TarjetaCinta>
+  </div>
+  <script type="application/json" data-quiz-datos set:html={JSON.stringify(quiz)} />
+</Seccion>
+
+<script>
+  import '../../scripts/quiz.ts';
+</script>
+
+<style>
+  .sin-js {
+    margin-top: var(--espacio-3);
+    font-weight: 700;
+  }
+  .bloque {
+    display: grid;
+    gap: var(--espacio-4);
+    width: 100%;
+  }
+  .enunciado {
+    font-size: var(--titulo-historia);
+    text-transform: none;
+  }
+  .cierre {
+    font-family: var(--font-titulo);
+    font-weight: 900;
+    font-size: var(--titulo-historia);
+    text-transform: uppercase;
+    line-height: var(--interlineado-titulo);
+  }
+</style>

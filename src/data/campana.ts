@@ -36,6 +36,28 @@ export interface ObjetoJuego {
   porque: string;
 }
 
+export interface PreguntaQuiz {
+  pregunta: string;
+  opciones: readonly string[];
+  /** Índice de la opción correcta. */
+  correcta: number;
+  porque: string;
+}
+
+export interface Quiz {
+  titulo: string;
+  intro: string;
+  sinJs: string;
+  botones: { siguiente: string; otraVez: string };
+  correcto: string;
+  incorrecto: string;
+  progreso: string;
+  resultado: string;
+  mensajes: readonly { desde: number; texto: string }[];
+  cierre: string;
+  preguntas: readonly PreguntaQuiz[];
+}
+
 export interface Juego {
   titulo: string;
   intro: string;
@@ -78,6 +100,7 @@ export interface Campana {
   pasos: Bloque;
   sobre: { titulo: string };
   juego: Juego;
+  quiz: Quiz;
   cierre: { titulo: string; subtitulo: string };
   creditos: { proyecto: string; institucion: string };
 }
@@ -257,6 +280,54 @@ export const campana = {
         'Muestra qué sí puedes depositar y qué no.',
       ],
     },
+  },
+
+  // Mini quiz (parte #12): preguntas nuevas sacadas de la guía y de la encuesta, para que el equipo las revise.
+  quiz: {
+    titulo: 'Comprueba lo que aprendiste',
+    intro: 'Cuatro preguntas rápidas sobre la guía y la encuesta.',
+    sinJs: 'El quiz necesita JavaScript. Repasa la guía y los datos de la historia.',
+    botones: { siguiente: 'Siguiente', otraVez: 'Repetir el quiz' },
+    correcto: '¡Correcto!',
+    incorrecto: 'No exactamente.',
+    progreso: 'Pregunta {n} de {total}',
+    resultado: 'Acertaste {aciertos} de {total}',
+    mensajes: [
+      { desde: 4, texto: '¡Todo correcto! Ya estás listo para usar el Ecopunto.' },
+      { desde: 2, texto: '¡Bien! Un repaso rápido a la guía y quedas listo.' },
+      { desde: 0, texto: 'Repasa la historia y la guía: ahí están todas las respuestas.' },
+    ],
+    cierre: 'Tu residuo electrónico tiene un lugar. La basura común no es uno de ellos.',
+    preguntas: [
+      {
+        pregunta: '¿Qué porcentaje de los estudiantes encuestados no sabe dónde llevar un residuo electrónico?',
+        opciones: ['39.1 %', '80.4 %', '91.3 %'],
+        correcta: 1,
+        porque: 'El 80.4 % no sabe dónde llevarlo: por eso existe el Ecopunto.',
+      },
+      {
+        pregunta: '¿Cuál de estos objetos va al Ecopunto?',
+        opciones: ['Una botella', 'Una memoria USB', 'Restos de comida'],
+        correcta: 1,
+        porque: 'Las memorias USB son accesorios electrónicos; la botella y la comida no.',
+      },
+      {
+        pregunta: '¿Cuál es el primer paso para usar el Ecopunto?',
+        opciones: [
+          'Identificar si el objeto corresponde al tipo de residuo aceptado',
+          'Mezclarlo con la basura común',
+          'Desarmarlo antes de depositarlo',
+        ],
+        correcta: 0,
+        porque: 'Primero identifica si el objeto es un residuo aceptado; después, sin mezclarlo, deposítalo.',
+      },
+      {
+        pregunta: '¿Dónde NO debe terminar tu cargador viejo?',
+        opciones: ['En el Ecopunto', 'En la basura común', 'En un punto de reciclaje de electrónicos'],
+        correcta: 1,
+        porque: 'La basura común no es lugar para residuos electrónicos.',
+      },
+    ],
   },
 
   pasos: {

@@ -75,17 +75,6 @@ const { juego } = campana;
     margin-top: var(--espacio-3);
     font-weight: 700;
   }
-  .pregunta,
-  .final {
-    display: grid;
-    gap: var(--espacio-4);
-    justify-items: center;
-    text-align: center;
-  }
-  .progreso {
-    font-weight: 700;
-    color: var(--color-tinta-suave);
-  }
   .objeto {
     display: grid;
     justify-items: center;
@@ -94,92 +83,7 @@ const { juego } = campana;
   .objeto-dibujo {
     color: var(--color-tinta);
   }
-  .objeto-nombre,
-  .resultado {
+  .objeto-nombre {
     font-size: var(--titulo-historia);
-  }
-  .botones {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--espacio-3);
-  }
-  .boton {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--espacio-2);
-    min-height: 44px;
-    padding: var(--espacio-2) var(--espacio-4);
-    border: none;
-    border-radius: 6px;
-    font-family: var(--font-titulo);
-    font-weight: 900;
-    font-size: var(--texto-etiqueta);
-    text-transform: uppercase;
-    box-shadow: var(--sombra-papel);
-    cursor: pointer;
-  }
-  .boton:disabled {
-    opacity: 0.45;
-    cursor: default;
-  }
-  .boton-si {
-    background: var(--color-si);
-    color: var(--color-tinta);
-  }
-  .boton-no {
-    background: var(--color-no);
-    color: var(--color-blanco);
-  }
-  .boton-siguiente {
-    background: var(--color-tinta);
-    color: var(--color-cuaderno);
-  }
-  .respuesta {
-    display: none;
-    align-items: flex-start;
-    gap: var(--espacio-3);
-    width: 100%;
-    padding: var(--espacio-3);
-    text-align: left;
-    background: var(--color-cuaderno);
-    border-left: 6px solid var(--color-tinta);
-  }
-  .respuesta[data-resultado] {
-    display: flex;
-  }
-  .respuesta[data-resultado='bien'] {
-    border-left-color: var(--color-si);
-  }
-  .respuesta[data-resultado='mal'] {
-    border-left-color: var(--color-no);
-  }
-  .marca {
-    display: none;
-  }
-  .respuesta[data-resultado='bien'] .marca-bien {
-    display: block;
-    color: var(--color-verde);
-  }
-  .respuesta[data-resultado='mal'] .marca-mal {
-    display: block;
-    color: var(--color-no);
-  }
-  .estado {
-    font-weight: 700;
-  }
-  .mensaje {
-    font-weight: 700;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .respuesta[data-resultado] {
-      animation: aparecer 0.25s ease-out;
-    }
-    @keyframes aparecer {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-    }
   }
 </style>
