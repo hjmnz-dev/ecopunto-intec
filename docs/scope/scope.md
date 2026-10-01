@@ -16,7 +16,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 1 | Stack y publicación | Foundation | done |
 | 2 | Estándares y herramientas | Foundation | planned |
 | 3 | Sistema visual y animación | Foundation | done |
-| 4 | Contenido e imágenes de la campaña | Foundation | in-progress |
+| 4 | Contenido e imágenes de la campaña | Foundation | done |
 | 5 | Portada y el problema | Release 1 | dropped (reemplazada por #14) |
 | 6 | Guía del Ecopunto | Release 1 | dropped (reemplazada por #14) |
 | 7 | Datos de la encuesta | Release 1 | dropped (reemplazada por #14) |
@@ -58,8 +58,8 @@ spec [0002](../specs/0002-sistema-visual-animacion/index.md) · code in `src/com
 ### 4. Contenido e imágenes de la campaña
 Exportar de Canva las imágenes (logo Ecopunto INTEC, contenedor, objetos como cargador, cable, audífonos, botella) y pasar los textos de las diapositivas a un solo lugar en el proyecto, para que las secciones solo tengan que leerlos.
 **Done when:** las imágenes están en el proyecto optimizadas para web (livianas, con texto alternativo) y los textos, porcentajes, listas de sí y no, y los 4 pasos están en un archivo de contenido.
-code in `src/data/campana.ts` · imágenes pendientes (el Canva no permite exportar)
-- [ ] Build it: `/develop contenido e imágenes de la campaña`
+code in `src/data/campana.ts` · las imágenes del Canva se reemplazaron por dibujos SVG (spec 0003)
+- [x] Build it: `/develop contenido e imágenes de la campaña`
 
 ## Release 1: La página completa y publicada
 
@@ -88,13 +88,13 @@ Mensaje final "Tu residuo electrónico tiene un lugar. La basura común no es un
 ### 14. Historia al hacer scroll
 La página como historia: la vida de un cargador en cinco escenas fijas (funciona y se daña, al cajón, a la basura, nadie sabe dónde, el Ecopunto) con dibujos SVG que se mueven y cifras que cuentan solas, seguida de una guía clara para actuar, "Sobre la campaña", el cierre y el pie. Reemplaza a las partes #5 a #8. (basis: el equipo pidió una página que llame mucho la atención y explique el tema, no una copia de las diapositivas)
 **Done when:** al bajar en un celular, cada escena se fija y anima sus dibujos y cifras; la guía muestra qué sí y qué no, los 4 pasos y el contenedor; con movimiento reducido o sin JS todo se lee quieto y completo.
-spec [0003](../specs/0003-historia-scroll/index.md) · code in _(pendiente)_
+spec [0003](../specs/0003-historia-scroll/index.md) · code in `src/pages/index.astro`, `src/components/historia/`, `src/components/ilustraciones/`, `src/scripts/escenas/`
 - [x] Design it (spec): `/architect historia al hacer scroll`
-- [ ] Build it: `/develop historia al hacer scroll`
-  - [ ] Contenido, tokens y dibujos SVG (AC-1, AC-4, AC-5, AC-8, AC-10)
-  - [ ] Página completa en modo estático y publicada (AC-1, AC-3, AC-6, AC-7, AC-8, AC-10)
-  - [ ] Escenas fijas A a E con sus líneas de tiempo (AC-2, AC-3, AC-4, AC-5, AC-7)
-  - [ ] Pista, orden de registro, pruebas y `design.md` (AC-6, AC-8, AC-9, AC-10, AC-11)
+- [x] Build it: `/develop historia al hacer scroll`
+  - [x] Contenido, tokens y dibujos SVG (AC-1, AC-4, AC-5, AC-8, AC-10)
+  - [x] Página completa en modo estático y publicada (AC-1, AC-3, AC-6, AC-7, AC-8, AC-10)
+  - [x] Escenas fijas A a E con sus líneas de tiempo (AC-2, AC-3, AC-4, AC-5, AC-7)
+  - [x] Pista, orden de registro, pruebas y `design.md` (AC-6, AC-8, AC-9, AC-10, AC-11)
 - [ ] Verify it: `/check verify historia al hacer scroll`
 
 ### 9. Publicación en línea y código QR
