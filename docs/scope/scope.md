@@ -24,7 +24,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 14 | Historia al hacer scroll | Release 1 | done |
 | 9 | Publicación en línea y código QR | Release 1 | done |
 | 10 | Contadores y gráficos animados | Release 2 | dropped (cubierta por #14) |
-| 11 | Juego "¿Va al Ecopunto?" | Release 3 | in-progress |
+| 11 | Juego "¿Va al Ecopunto?" | Release 3 | done |
 | 12 | Mini quiz final | Release 4 | planned |
 | 13 | Contador de visitas | Release 5 | planned |
 
@@ -116,13 +116,13 @@ Los porcentajes de la encuesta suben de 0 a su valor y los gráficos se dibujan 
 ### 11. Juego "¿Va al Ecopunto?"
 El estudiante arrastra o toca objetos (cable, botella, audífonos, restos de comida) y descubre si van al Ecopunto o no, con respuesta inmediata. Hay que decidir cómo se juega en celular (arrastrar o tocar), cuántos objetos y cómo se da la respuesta. (basis: behavior that is not trivial; los juegos de arrastrar necesitan una alternativa de toque)
 **Done when:** en celular y computadora se puede clasificar cada objeto tocando o arrastrando, cada respuesta muestra si es correcta y por qué, y al final se ve el puntaje con opción de jugar otra vez.
-spec [0004](../specs/0004-juego-va-ecopunto/index.md) · code in _(pendiente)_
+spec [0004](../specs/0004-juego-va-ecopunto/index.md) · code in `src/components/historia/Juego.astro`, `src/scripts/juego.ts`
 - [x] Design it (spec): `/architect juego ¿va al ecopunto?`
-- [ ] Build it: `/develop juego ¿va al ecopunto?`
-  - [ ] Contenido y componente del juego con aviso sin JS (AC-1, AC-3, AC-6, AC-7)
-  - [ ] Estado, respuestas, foco y reinicio (AC-2, AC-3, AC-4, AC-5)
-  - [ ] Pruebas y publicación (AC-7, AC-8)
-- [ ] Verify it: `/check verify juego ¿va al ecopunto?`
+- [x] Build it: `/develop juego ¿va al ecopunto?`
+  - [x] Contenido y componente del juego con aviso sin JS (AC-1, AC-3, AC-6, AC-7)
+  - [x] Estado, respuestas, foco y reinicio (AC-2, AC-3, AC-4, AC-5)
+  - [x] Pruebas y publicación (AC-7, AC-8)
+- [x] Verify it: `/check verify juego ¿va al ecopunto?`
 
 ## Release 4: Comprobar lo aprendido
 
