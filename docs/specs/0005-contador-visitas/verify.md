@@ -37,3 +37,5 @@ _Steps derived from spec 0005 acceptance criteria. `/check verify` runs these; `
 Comprobado en línea: AC-2 (200 sin `Location` en `/qr` y `/qr/`, mismo `<title>`, canonical y `og:url` sin ruta), AC-6, AC-7 (`?src=qr` en 200; check, build y formato pasan) y AC-5 en `/qr` (sin cookies ni almacenamiento, sin `Set-Cookie`). AC-3 comprobado por código: el SVG es idéntico al que se genera para `https://ecopunto-intec.pages.dev/qr`; falta escanearlo con un celular. Pendiente: AC-1 y AC-4, que esperan que actives Web Analytics.
 
 Después de activar Web Analytics (commit `c848664`): AC-1 comprobado en línea. `beacon.min.js` (con `defer`) está en `/`, `/qr`, `/qr/` y `/?src=qr`, y al abrir `/qr` sale la petición a `cloudflareinsights.com/cdn-cgi/rum`, sin cookies, sin almacenamiento y sin errores en consola. Pendiente: AC-4 (mirar el panel) y escanear el QR.
+
+AC-4 confirmado por ti en el panel de Web Analytics (2026-10-01): se ven las visitas totales y las de la ruta `/qr`. Pendiente: escanear el QR con un celular.

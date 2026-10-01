@@ -139,10 +139,10 @@ Contar cuántas personas entran a la página y cuántas llegan desde el QR, para
 **Done when:** puedes ver el total de visitas y cuántas vinieron desde el QR, y la página no pide cookies ni guarda datos personales.
 spec [0005](../specs/0005-contador-visitas/index.md) · code in `public/_redirects`, `scripts/qr.mjs`, `qr/ecopunto-intec-qr.svg`, `src/pages/index.astro` (pie) · Web Analytics activado en el panel de Cloudflare (2026-10-01)
 - [x] Design it (spec): `/architect contador de visitas`
-- [ ] Build it: `/develop contador de visitas`
+- [x] Build it: `/develop contador de visitas`
   - [x] Web Analytics activado, ruta `/qr` y línea de privacidad publicadas (AC-1, AC-2, AC-6, AC-7)
   - [x] QR regenerado con `/qr` después de confirmarla en línea (AC-3)
-  - [ ] Panel con visitas totales y de `/qr`, sin cookies ni almacenamiento (AC-4, AC-5)
+  - [x] Panel con visitas totales y de `/qr`, sin cookies ni almacenamiento (AC-4, AC-5)
 - [ ] Verify it: `/check verify contador de visitas`
 
 ## Deferred
