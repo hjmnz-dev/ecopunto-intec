@@ -26,7 +26,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 10 | Contadores y gráficos animados | Release 2 | dropped (cubierta por #14) |
 | 11 | Juego "¿Va al Ecopunto?" | Release 3 | done |
 | 12 | Mini quiz final | Release 4 | done |
-| 13 | Contador de visitas | Release 5 | in-progress |
+| 13 | Contador de visitas | Release 5 | done |
 
 ## Foundations
 
@@ -143,7 +143,7 @@ spec [0005](../specs/0005-contador-visitas/index.md) · code in `public/_redirec
   - [x] Web Analytics activado, ruta `/qr` y línea de privacidad publicadas (AC-1, AC-2, AC-6, AC-7)
   - [x] QR regenerado con `/qr` después de confirmarla en línea (AC-3)
   - [x] Panel con visitas totales y de `/qr`, sin cookies ni almacenamiento (AC-4, AC-5)
-- [ ] Verify it: `/check verify contador de visitas`
+- [x] Verify it: `/check verify contador de visitas`
 
 ## Deferred
 Fuera de esta noche, guardado para que el plan sea honesto.
