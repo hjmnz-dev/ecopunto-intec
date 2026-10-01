@@ -17,10 +17,11 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 2 | Estándares y herramientas | Foundation | planned |
 | 3 | Sistema visual y animación | Foundation | done |
 | 4 | Contenido e imágenes de la campaña | Foundation | in-progress |
-| 5 | Portada y el problema | Release 1 | planned |
-| 6 | Guía del Ecopunto | Release 1 | planned |
-| 7 | Datos de la encuesta | Release 1 | planned |
-| 8 | Cierre y pie de página | Release 1 | planned |
+| 5 | Portada y el problema | Release 1 | dropped (reemplazada por #14) |
+| 6 | Guía del Ecopunto | Release 1 | dropped (reemplazada por #14) |
+| 7 | Datos de la encuesta | Release 1 | dropped (reemplazada por #14) |
+| 8 | Cierre y pie de página | Release 1 | dropped (reemplazada por #14) |
+| 14 | Historia al hacer scroll | Release 1 | in-progress |
 | 9 | Publicación en línea y código QR | Release 1 | planned |
 | 10 | Contadores y gráficos animados | Release 2 | planned |
 | 11 | Juego "¿Va al Ecopunto?" | Release 3 | planned |
@@ -64,25 +65,37 @@ code in `src/data/campana.ts` · imágenes pendientes (el Canva no permite expor
 
 La versión mínima que ya cumple la campaña: un estudiante escanea el QR, entiende el problema, ve los datos y sabe qué depositar y cómo. Animaciones sencillas de entrada en cada sección. Si la noche termina aquí, ya tienes una página presentable.
 
-### 5. Portada y el problema
+### 5. Portada y el problema · dropped (reemplazada por #14, spec 0003)
 Portada con el logo, el lema y una entrada animada, seguida de "¿Por qué este proyecto?", "¿Cuál es el problema?" y el objetivo de la campaña.
 **Done when:** al abrir la página se ve la portada animada con el lema; al bajar aparecen el porqué, el problema y el objetivo con animaciones de entrada; se lee bien en un celular.
 - [ ] Build it: `/develop portada y el problema`
 
-### 6. Guía del Ecopunto
+### 6. Guía del Ecopunto · dropped (reemplazada por #14, spec 0003)
 El corazón de la página: qué sí depositar y qué no (dos columnas con los objetos), los 4 pasos para usar el Ecopunto y la sección "¿Dónde lo llevo?" que enseña a reconocer el contenedor, sin mapa. (basis: 91.3 % valora un instructivo y 80.4 % no sabe dónde llevarlo)
 **Done when:** se ven las listas de sí y no con sus imágenes, los 4 pasos aparecen uno tras otro al hacer scroll, y la imagen del contenedor explica cómo reconocerlo en el campus.
 - [ ] Build it: `/develop guía del ecopunto`
 
-### 7. Datos de la encuesta
+### 7. Datos de la encuesta · dropped (reemplazada por #14, spec 0003)
 Los cuatro hallazgos de la encuesta de 46 estudiantes como tarjetas grandes y claras, con una entrada animada sencilla. Los contadores y gráficos animados vienen en la Release 2.
 **Done when:** las cuatro cifras (76.1 %, 80.4 %, 78.3 %, 91.3 %) se ven con su frase, más la nota de cómo se obtuvo la información.
 - [ ] Build it: `/develop datos de la encuesta`
 
-### 8. Cierre y pie de página
+### 8. Cierre y pie de página · dropped (reemplazada por #14, spec 0003)
 Mensaje final "Tu residuo electrónico tiene un lugar. La basura común no es uno de ellos", con el contenedor, y un pie con el nombre del proyecto, INTEC y los integrantes.
 **Done when:** la página termina con el mensaje de cierre animado y un pie con los créditos.
 - [ ] Build it: `/develop cierre y pie de página`
+
+### 14. Historia al hacer scroll
+La página como historia: la vida de un cargador en cinco escenas fijas (funciona y se daña, al cajón, a la basura, nadie sabe dónde, el Ecopunto) con dibujos SVG que se mueven y cifras que cuentan solas, seguida de una guía clara para actuar, "Sobre la campaña", el cierre y el pie. Reemplaza a las partes #5 a #8. (basis: el equipo pidió una página que llame mucho la atención y explique el tema, no una copia de las diapositivas)
+**Done when:** al bajar en un celular, cada escena se fija y anima sus dibujos y cifras; la guía muestra qué sí y qué no, los 4 pasos y el contenedor; con movimiento reducido o sin JS todo se lee quieto y completo.
+spec [0003](../specs/0003-historia-scroll/index.md) · code in _(pendiente)_
+- [x] Design it (spec): `/architect historia al hacer scroll`
+- [ ] Build it: `/develop historia al hacer scroll`
+  - [ ] Contenido, tokens y dibujos SVG (AC-1, AC-4, AC-5, AC-8, AC-10)
+  - [ ] Página completa en modo estático y publicada (AC-1, AC-3, AC-6, AC-7, AC-8, AC-10)
+  - [ ] Escenas fijas A a E con sus líneas de tiempo (AC-2, AC-3, AC-4, AC-5, AC-7)
+  - [ ] Pista, orden de registro, pruebas y `design.md` (AC-6, AC-8, AC-9, AC-10, AC-11)
+- [ ] Verify it: `/check verify historia al hacer scroll`
 
 ### 9. Publicación en línea y código QR
 Subir la página a un enlace público, con título y vista previa al compartirla en redes o WhatsApp, y generar el código QR para los materiales del campus.
