@@ -8,38 +8,40 @@ import ListaIconos from '../components/ui/ListaIconos.astro';
 import ImagenMarco from '../components/ui/ImagenMarco.astro';
 import EtiquetaSiNo from '../components/ui/EtiquetaSiNo.astro';
 import reciclar from '../assets/muestra/reciclar.png';
+import { campana } from '../data/campana';
 
 // Página de muestra temporal del sistema visual (spec 0002). La reemplaza la portada en la parte #5.
-// Los textos vienen del Canva de la campaña; pasan a src/data/campana.ts en la parte #4.
+const { encuesta, guia, porque } = campana;
+const giros = ['izquierda', 'recto', 'derecha'] as const;
 ---
 
-<Base titulo="Ecopunto INTEC" descripcion="Pequeños aparatos, grandes cambios.">
+<Base titulo={campana.meta.titulo} descripcion={campana.meta.descripcion}>
   <main>
     <Seccion id="inicio" ancho="texto">
       <TarjetaCinta cinta="esquinas" giro="izquierda" as="article">
-        <h1 class="marca">Ecopunto INTEC</h1>
-        <p class="lema">Pequeños aparatos, grandes cambios.</p>
+        <h1 class="marca">{campana.nombre}</h1>
+        <p class="lema">{campana.lema}</p>
         <p class="nota">Muestra temporal del sistema visual.</p>
       </TarjetaCinta>
     </Seccion>
 
     <Seccion id="informacion">
-      <TituloSeccion>¿Cómo obtuvimos la información?</TituloSeccion>
+      <TituloSeccion>{encuesta.titulo}</TituloSeccion>
       <div class="grilla">
         <TarjetaCinta giro="izquierda">
           <ListaIconos
             items={[
-              { icono: 'clipboard-list', texto: 'Se realizó una encuesta en línea a estudiantes del INTEC.' },
-              { icono: 'users', texto: 'Participaron 46 estudiantes de diferentes carreras.' },
-              { icono: 'trending-up', texto: 'Los resultados muestran conocimientos, prácticas y expectativas.' },
+              { icono: 'clipboard-list', texto: encuesta.metodo[0] },
+              { icono: 'users', texto: encuesta.metodo[1] },
+              { icono: 'trending-up', texto: encuesta.metodo[2] },
             ]}
           />
         </TarjetaCinta>
         <TarjetaCinta cinta="lados">
-          <p>Los dispositivos electrónicos forman parte de nuestra vida universitaria. Cuando dejan de funcionar, muchas veces no sabemos qué hacer con ellos.</p>
+          <p>{porque.puntos[0]} {porque.puntos[1]}</p>
         </TarjetaCinta>
         <TarjetaCinta papel="salvia" cinta="esquinas" giro="derecha">
-          <p>Esto genera impactos ambientales y representa una pérdida de recursos.</p>
+          <p>{porque.puntos[2]}</p>
         </TarjetaCinta>
       </div>
     </Seccion>
@@ -47,14 +49,9 @@ import reciclar from '../assets/muestra/reciclar.png';
     <Seccion id="datos">
       <TituloSeccion>Datos de la encuesta</TituloSeccion>
       <div class="grilla">
-        <BloqueDato valor={76.1} frase="guarda los aparatos que ya no usa." giro="izquierda" />
-        <BloqueDato valor={80.4} frase="no sabe dónde llevar un residuo electrónico." />
-        <BloqueDato
-          valor={91.3}
-          frase="calificó entre 4 y 5 la utilidad de un instructivo."
-          detalle="Encuesta en línea a 46 estudiantes."
-          giro="derecha"
-        />
+        {encuesta.datos.slice(0, 3).map((dato, i) => (
+          <BloqueDato valor={dato.valor} frase={dato.frase} detalle={'detalle' in dato ? dato.detalle : undefined} giro={giros[i]} />
+        ))}
       </div>
     </Seccion>
 
@@ -63,10 +60,10 @@ import reciclar from '../assets/muestra/reciclar.png';
       <div class="grilla">
         <TarjetaCinta giro="derecha">
           <div class="etiquetas">
-            <EtiquetaSiNo tipo="si" texto="Sí puedes depositar" />
-            <p>Cargadores, cables, audífonos y otros pequeños aparatos.</p>
-            <EtiquetaSiNo tipo="no" texto="No depositar" />
-            <p>Restos de comida, botellas y basura común.</p>
+            <EtiquetaSiNo tipo="si" texto={guia.si.titulo} />
+            <p>{guia.si.puntos.slice(0, 5).join(', ')} y más.</p>
+            <EtiquetaSiNo tipo="no" texto={guia.no.titulo} />
+            <p>{guia.no.puntos.slice(0, 4).join(', ')} y más.</p>
           </div>
         </TarjetaCinta>
         <ImagenMarco src={reciclar} alt="Símbolo de reciclaje en verde." giro="izquierda" cinta="esquinas" />

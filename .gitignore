@@ -21,3 +21,6 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .idea/
+
+# Exportaciones de Canva sin procesar (solo los recortes optimizados van en src/assets)
+_canva/

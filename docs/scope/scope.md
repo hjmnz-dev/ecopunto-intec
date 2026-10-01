@@ -16,7 +16,7 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 1 | Stack y publicación | Foundation | done |
 | 2 | Estándares y herramientas | Foundation | planned |
 | 3 | Sistema visual y animación | Foundation | done |
-| 4 | Contenido e imágenes de la campaña | Foundation | planned |
+| 4 | Contenido e imágenes de la campaña | Foundation | in-progress |
 | 5 | Portada y el problema | Release 1 | planned |
 | 6 | Guía del Ecopunto | Release 1 | planned |
 | 7 | Datos de la encuesta | Release 1 | planned |
@@ -57,6 +57,7 @@ spec [0002](../specs/0002-sistema-visual-animacion/index.md) · code in `src/com
 ### 4. Contenido e imágenes de la campaña
 Exportar de Canva las imágenes (logo Ecopunto INTEC, contenedor, objetos como cargador, cable, audífonos, botella) y pasar los textos de las diapositivas a un solo lugar en el proyecto, para que las secciones solo tengan que leerlos.
 **Done when:** las imágenes están en el proyecto optimizadas para web (livianas, con texto alternativo) y los textos, porcentajes, listas de sí y no, y los 4 pasos están en un archivo de contenido.
+code in `src/data/campana.ts` · imágenes pendientes (el Canva no permite exportar)
 - [ ] Build it: `/develop contenido e imágenes de la campaña`
 
 ## Release 1: La página completa y publicada
