@@ -23,8 +23,8 @@ _Estas son recomendaciones para mantener el trabajo ordenado, no requisitos. Sal
 | 8 | Cierre y pie de página | Release 1 | dropped (reemplazada por #14) |
 | 14 | Historia al hacer scroll | Release 1 | done |
 | 9 | Publicación en línea y código QR | Release 1 | done |
-| 10 | Contadores y gráficos animados | Release 2 | planned |
-| 11 | Juego "¿Va al Ecopunto?" | Release 3 | planned |
+| 10 | Contadores y gráficos animados | Release 2 | dropped (cubierta por #14) |
+| 11 | Juego "¿Va al Ecopunto?" | Release 3 | in-progress |
 | 12 | Mini quiz final | Release 4 | planned |
 | 13 | Contador de visitas | Release 5 | planned |
 
@@ -106,17 +106,23 @@ code in `src/layouts/Base.astro` (Open Graph), `public/og.png`, `qr/ecopunto-int
 
 ## Release 2: Datos que se mueven
 
-### 10. Contadores y gráficos animados
+### 10. Contadores y gráficos animados · dropped (cubierta por #14: cifras que cuentan y grilla de 46 puntos en cada escena, spec 0003)
 Los porcentajes de la encuesta suben de 0 a su valor y los gráficos se dibujan solos cuando la sección entra en pantalla. Mejora la sección 7, no la reemplaza.
 **Done when:** cada cifra cuenta hasta su valor una sola vez al entrar en pantalla, los gráficos se dibujan con el mismo dato, y con movimiento reducido se muestran directamente en su valor final.
 - [ ] Build it: `/develop contadores y gráficos animados`
 
 ## Release 3: Aprender jugando
 
-### 11. Juego "¿Va al Ecopunto?" · needs a decision
+### 11. Juego "¿Va al Ecopunto?"
 El estudiante arrastra o toca objetos (cable, botella, audífonos, restos de comida) y descubre si van al Ecopunto o no, con respuesta inmediata. Hay que decidir cómo se juega en celular (arrastrar o tocar), cuántos objetos y cómo se da la respuesta. (basis: behavior that is not trivial; los juegos de arrastrar necesitan una alternativa de toque)
 **Done when:** en celular y computadora se puede clasificar cada objeto tocando o arrastrando, cada respuesta muestra si es correcta y por qué, y al final se ve el puntaje con opción de jugar otra vez.
-- [ ] Design it (spec): `/architect juego ¿va al ecopunto?`
+spec [0004](../specs/0004-juego-va-ecopunto/index.md) · code in _(pendiente)_
+- [x] Design it (spec): `/architect juego ¿va al ecopunto?`
+- [ ] Build it: `/develop juego ¿va al ecopunto?`
+  - [ ] Contenido y componente del juego con aviso sin JS (AC-1, AC-3, AC-6, AC-7)
+  - [ ] Estado, respuestas, foco y reinicio (AC-2, AC-3, AC-4, AC-5)
+  - [ ] Pruebas y publicación (AC-7, AC-8)
+- [ ] Verify it: `/check verify juego ¿va al ecopunto?`
 
 ## Release 4: Comprobar lo aprendido
 
